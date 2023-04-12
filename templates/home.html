@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h1>Welcome to my blog!</h1>
+<p>Here you can find some of my projects, and other things that I wanted to write about. Enjoy!</p>
+
+{% for post in posts|reverse %}
+    <table class="post-card">
+        <tr>
+            <th>
+            <a href="{{ url_for('post', post_id=post.id) }}">
+                {{ post.title }}
+            </a>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                {% set see_more = 
+                    "<a href=\""+
+                        url_for('post', post_id=post.id)
+                    +"\">... see more</a>" 
+                %}
+                {{ post.content|
+                    truncate(
+                        see_more|length+480,
+                        True,
+                        see_more
+                    )|
+                    safe
+                }}
+            </td>
+        </tr>
+    </table>
+{% endfor %}
+
+{% endblock %}

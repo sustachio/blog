@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<h5>{{ post.date }}</h5>
+
+<div id="post-content">
+    {{ post.content|safe }}
+</div>
+
+{% endblock %}

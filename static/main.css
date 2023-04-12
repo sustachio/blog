@@ -1,0 +1,59 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    object-fit: contain;
+}
+
+table, th, td {
+    border: 1px solid;
+    text-align: left;
+    vertical-align: top;
+}
+
+#post-content {
+    margin-left: 2rem;
+    width: 50%;
+}
+
+#body {
+    width: 100%;
+    height: 100%;
+}
+
+#top {
+    height: 3rem;
+}
+
+#logo {
+    font-size: 2rem;
+}
+
+#page-list {
+    width: 12rem;
+}
+
+.post-card {
+    width: 25rem;
+}
+
+@media screen and (max-width: 36rem) {
+    .post-card {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 55rem) {
+    .post-card {
+        width: 100%;
+    }
+
+    #post-content {
+        margin-left: 0;
+        width: 100%
+    }
+}
