@@ -17,7 +17,7 @@
                 <a href="{{ url_for('home') }}">Home</a><br><br>
                 All Posts:
                 <ul>
-                    {% for post in posts %}
+                    {% for post in posts|reverse %}
                         <li><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></li>
                     {% endfor %}
                 </div>
