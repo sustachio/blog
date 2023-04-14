@@ -22,6 +22,9 @@ def page_not_found(e):
 def about():
     return "under construction"
 
+@app.route("/findme")
+def find_me():
+    return render_template("find me.html", posts=db.get_posts())
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
