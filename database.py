@@ -25,7 +25,11 @@ class Database():
                       (post["id"], post["title"], post["date"], post["content"]))
         self.db.commit()
     
-    def make_posts_from_md(self):        
+    def make_posts_from_md(self):
+        # delete old data
+        self.db_cursor.execute("DELETE FROM posts")
+        self.db.commit()
+        
         for file in listdir("posts_md/"):
             # convert md to html
             with open("posts_md/" + file, "r") as f:
