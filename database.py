@@ -25,7 +25,7 @@ class Database():
                       (post["id"], post["title"], post["date"], post["content"]))
         self.db.commit()
     
-    def make_posts_from_md(self):
+    def make_posts_from_md(self):        
         for file in listdir("posts_md/"):
             # convert md to html
             with open("posts_md/" + file, "r") as f:
@@ -34,7 +34,7 @@ class Database():
                 content = markdown("\n".join(content))
     
             self.db_cursor.execute("SELECT * FROM posts")
-            id = len(self.db_cursor.fetchone())
+            id = len(self.db_cursor.fetchall())
     
             self.add_post({
                 "title": title,
