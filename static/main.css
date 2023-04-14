@@ -49,13 +49,13 @@ footer {
     .post-card {
         width: 100%;
     }
+
+    #page-list {
+        width: 25%;
+    }
 }
 
 @media screen and (max-width: 55rem) {
-    .post-card {
-        width: 100%;
-    }
-
     #post-content {
         margin-left: 0;
         width: 100%
