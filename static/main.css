@@ -15,6 +15,10 @@ table, th, td {
     vertical-align: top;
 }
 
+footer {
+    margin-top: 1rem;
+}
+
 #post-content {
     margin-left: 2rem;
     width: 50%;
