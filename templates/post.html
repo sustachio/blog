@@ -8,4 +8,37 @@
     {{ post.content|safe }}
 </div>
 
+<h2>Comments</h2>
+
+{% if comments|length %}
+    {% for comment in comments|reverse %}
+        <div class="comment" id="{{ comment.comment_id }}">
+            <b>{{ comment.user_name }} on {{ comment.posted_on }}</b><br>
+            {{ comment.content }}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No comments here yet. You should write one!</p>
+{% endif %}
+
+<h3>Post a comment:</h3>
+<form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}">
+    <table>
+        <tr>
+            <th><label for="name">Name:</label></th>
+            <td><input type="text" name="name"
+                placeholder="Enter your name"
+                value="Anonymous" required></td>
+        </tr>
+
+        <tr>
+            <th><label for="comment">Comment:</label></th>
+            <td><textarea type="text" name="comment"
+                placeholder="Type your comment here"
+                rows="6" required></textarea></td>
+        </tr>
+    </table>
+    <input type="submit" value="Post Comment">
+</form>
+
 {% endblock %}

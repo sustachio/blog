@@ -24,6 +24,22 @@ code {
     background: rgba(0,0,0,.1);
 }
 
+.comment {
+    margin: 1rem 0;
+}
+
+#post-comment {
+    margin-left: 2rem;
+}
+
+#post-comment th, #post-comment td, #post-comment table {
+    border: none;
+}
+
+#post-comment input, #post-comment textarea {
+    width: 20rem;
+}
+
 #post-content {
     margin-left: 2rem;
     width: 50%;

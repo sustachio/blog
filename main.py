@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from database import Database
 import sqlite3
 
@@ -33,7 +33,15 @@ def post(post_id):
     if "error" in post:
         return render_template('404.html'), 404
 
-    return render_template("post.html", post=post, posts=db.get_posts())
+    return render_template("post.html", post=post, posts=db.get_posts(), comments=db.get_comments(post_id))
 
+@app.route("/post_comment/<int:post_id>", methods=["POST"])
+def post_comment(post_id):
+    print("fetched")
+    db.add_comment(post_id, request.form.get("name"), request.form.get("comment"))
+
+    return redirect(url_for("post", post_id=post_id))
+    
+    
 
 app.run(host='0.0.0.0', port=81)
