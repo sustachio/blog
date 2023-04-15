@@ -13,6 +13,4 @@ _The first version of this blog_
 
 To add to the theme of an older webpage, I decided to challenge myself by not using any Javascript. I almost ended up not using css either, but I decided against it. The entire website is rendered on the server, including the "... see more"s (which took a while to get working) and the posts on the home page.
 
-As of now, this is just a side project of mine so I may not work on designing the webpage as much, but it has been fun so far with my limited front-end experience. Thanks for reading, see you in the next post!
-
-(I may try and implement comments later, so look forward to that : ) )
+As of now, this is just a side project of mine so I may not work on designing the webpage as much, but it has been fun so far with my limited front-end experience. Thanks for reading, and see you in the next post!
