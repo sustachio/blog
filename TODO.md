@@ -1,0 +1,2 @@
+- sort posts by date
+- rework ids so deleting doesen't mess it up
