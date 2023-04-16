@@ -8,16 +8,19 @@ class Database():
         self.db_cursor = self.db.cursor()
 
     def make_tables(self):
+        self.db_cursor.execute("DROP TABLE posts")
+        self.db_cursor.execute("DROP TABLE comments")
+
         self.db_cursor.execute("""CREATE TABLE posts (
-            post_id integer,
+            post_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
             title text,
             posted_on date,
             content text
         )""")
 
         self.db_cursor.execute("""CREATE TABLE comments (
-            parent_post_id integer,
-            comment_id integer,
+            comment_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+            post_id integer,
             user_name text,
             posted_on date,
             content text
@@ -46,19 +49,9 @@ class Database():
             })
             
     def add_post(self, post):
-        # make sure the post doesent already exist
-        self.db_cursor.execute("SELECT * FROM posts WHERE title=?", (post["title"],))
-        if self.db_cursor.fetchall():
-            self.db_cursor.execute("""UPDATE posts
-                          SET posted_on=?, content=?, post_id=?
-                          WHERE title=?""",
-                          (post["date"], post["content"], post["id"],
-                          post["title"]))
-    
-        else:    
-            self.db_cursor.execute("""INSERT INTO posts
-                          VALUES(?,?,?,?)""",
-                          (post["id"], post["title"], post["date"], post["content"]))
+        self.db_cursor.execute("""INSERT INTO posts
+                  VALUES(?,?,?,?)""",
+                  (None, post["title"], post["date"], post["content"]))
             
         self.db.commit()
 
@@ -75,7 +68,7 @@ class Database():
 
     
     def get_posts(self):
-        self.db_cursor.execute("SELECT * FROM posts")
+        self.db_cursor.execute("SELECT * FROM posts ORDER BY posted_on")
         posts = [
             {
                 "id": post[0],
@@ -91,12 +84,11 @@ class Database():
 
     def add_comment(self, post_id, user_name, content):
         self.db_cursor.execute("SELECT * FROM comments")
-        comment_id = len(self.db_cursor.fetchall())
 
         posted_on = time.strftime('%Y-%m-%d')
         
         self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?)",
-                              (post_id, comment_id, user_name, posted_on, content))
+                              (None, post_id, user_name, posted_on, content))
 
         self.db.commit()
 
@@ -105,7 +97,7 @@ class Database():
         self.db.commit()
 
     def get_comments(self, post_id):
-        self.db_cursor.execute("SELECT * FROM comments WHERE parent_post_id=?", (post_id,))
+        self.db_cursor.execute("SELECT * FROM comments WHERE post_id=? ORDER BY posted_on", (post_id,))
 
         return [{
             "parent_post_id": comment[0],
