@@ -84,6 +84,21 @@ class Database():
         ]
     
         return posts
+
+    def get_projects(self):
+        self.db_cursor.execute('SELECT * FROM posts WHERE type=? ORDER BY posted_on', ("Project",))
+        posts = [
+            {
+                "id": post[0],
+                "title": post[1],
+                "type": post[2],
+                "date": post[3],
+                "content": post[4]
+            }
+            for post in self.db_cursor.fetchall()
+        ]
+    
+        return posts
     
 
     def add_comment(self, post_id, user_name, content):

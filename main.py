@@ -10,8 +10,11 @@ db.make_posts_from_md()
 
 @app.route('/')
 def home():
-    return render_template("home.html", posts=db.get_posts())
+    return render_template("home.html", all_posts=db.get_posts(), posts=db.get_posts())
 
+@app.route("/projects")
+def projects():
+    return render_template("home.html", all_posts=db.get_posts(), posts=db.get_projects())
 
 @app.errorhandler(404)
 def page_not_found(e):
