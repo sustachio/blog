@@ -9,6 +9,9 @@
         <tr>
             <th>
             <a href="{{ url_for('post', post_id=post.id) }}">
+                {% if post.type != "Post" %}
+                    {{ post.type }}: 
+                {% endif %}
                 {{ post.title }}
             </a>
             </th>

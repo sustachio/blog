@@ -9,22 +9,25 @@ class Database():
 
     def make_tables(self):
         self.db_cursor.execute("DROP TABLE posts")
-        self.db_cursor.execute("DROP TABLE comments")
+        #self.db_cursor.execute("DROP TABLE comments")
 
         self.db_cursor.execute("""CREATE TABLE posts (
             post_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
             title text,
+            type text,
             posted_on date,
             content text
         )""")
+        
+        # self.db_cursor.execute("""CREATE TABLE comments (
+        #     comment_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+        #     post_id integer,
+        #     user_name text,
+        #     posted_on date,
+        #     content text
+        # )""")     
 
-        self.db_cursor.execute("""CREATE TABLE comments (
-            comment_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-            post_id integer,
-            user_name text,
-            posted_on date,
-            content text
-        )""")       
+        self.db.commit()
 
     def make_posts_from_md(self):
         # delete old data
@@ -34,25 +37,24 @@ class Database():
         for file in listdir("posts_md/"):
             # convert md to html
             with open("posts_md/" + file, "r") as f:
-                (title, date, *content) = f.readlines()
+                (title, type, date, *content) = f.readlines()
     
                 content = markdown("\n".join(content))
-    
-            self.db_cursor.execute("SELECT * FROM posts")
-            id = len(self.db_cursor.fetchall())
-    
+                type = type.strip()
+        
             self.add_post({
                 "title": title,
+                "type": type,
                 "date": date,
                 "id": id,
                 "content": content
             })
-            
+
     def add_post(self, post):
         self.db_cursor.execute("""INSERT INTO posts
-                  VALUES(?,?,?,?)""",
-                  (None, post["title"], post["date"], post["content"]))
-            
+                  VALUES(?,?,?,?,?)""",
+                  (None, post["title"],  post["type"], post["date"], post["content"]))
+        
         self.db.commit()
 
     def get_post(self, post_id):
@@ -62,8 +64,9 @@ class Database():
         return {
             "id": post[0],
             "title": post[1],
-            "date": post[2],
-            "content": post[3]
+            "type": post[2],
+            "date": post[3],
+            "content": post[4]
         }
 
     
@@ -73,8 +76,9 @@ class Database():
             {
                 "id": post[0],
                 "title": post[1],
-                "date": post[2],
-                "content": post[3]
+                "type": post[2],
+                "date": post[3],
+                "content": post[4]
             }
             for post in self.db_cursor.fetchall()
         ]

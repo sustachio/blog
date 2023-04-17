@@ -1,4 +1,5 @@
 Jinja is Awesome
+Post
 4/14/23
 While making the server for this blog using Flask (a python library for web servers), I discovered the wonders of the Jinja templating engine.
 
