@@ -1,2 +1,2 @@
-- sort posts by date
-- rework ids so deleting doesen't mess it up
+- switch ids to just using the names
+- add posed_on to preveiw on homepage

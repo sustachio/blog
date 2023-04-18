@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.htop
     pkgs.sqlite.bin
     pkgs.python310Full
     pkgs.replitPackages.prybar-python310
