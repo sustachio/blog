@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from database import Database
+from css_maker import generate_css
 import sqlite3
 
 app = Flask(__name__)
@@ -8,17 +9,50 @@ db = Database(db_connection)
 
 db.make_posts_from_md()
 
+random_css = lambda html : (
+    generate_css(html) 
+        if request.args.get("random_css") 
+        else None
+)
+
 @app.route('/')
 def home():
-    return render_template("home.html", all_posts=db.get_posts(), posts=db.get_posts())
+    page = render_template(
+            "home.html", 
+            all_posts=db.get_posts(), 
+            posts=db.get_posts()
+        )
+    return render_template(
+            "head.html",
+            body=page,
+            extra_css=random_css(page)
+        )
 
 @app.route("/projects")
 def projects():
-    return render_template("home.html", all_posts=db.get_posts(), posts=db.get_projects())
+    page = render_template(
+        "home.html", 
+        all_posts=db.get_posts(), 
+        posts=db.get_projects(),
+    )
+    return render_template(
+        "head.html",
+        body=page,
+        extra_css=random_css(page)
+    )
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html"), 404
+    page = render_template(
+        "404.html",
+        all_posts=db.get_posts(), 
+        posts=db.get_projects(),
+    ), 404
+    return render_template(
+        "head.html",
+        body=page,
+        extra_css=random_css(page)
+    )
 
 
 @app.route("/about")
@@ -27,7 +61,16 @@ def about():
 
 @app.route("/findme")
 def find_me():
-    return render_template("find me.html", posts=db.get_posts())
+    page = render_template(
+        "find me.html", 
+        posts=db.get_posts(),
+        all_posts=db.get_posts(), 
+    )
+    return render_template(
+        "head.html",
+        body=page,
+        extra_css=random_css(page)
+    )
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
@@ -36,7 +79,18 @@ def post(post_id):
     if "error" in post:
         return render_template('404.html'), 404
 
-    return render_template("post.html", post=post, posts=db.get_posts(), comments=db.get_comments(post_id))
+    page = render_template(
+        "post.html", 
+        post=post, 
+        posts=db.get_posts(),
+        all_posts=db.get_posts(),
+        comments=db.get_comments(post_id),
+    )
+    return render_template(
+        "head.html",
+        body=page,
+        extra_css=random_css(page)
+    )
 
 @app.route("/post_comment/<int:post_id>", methods=["POST"])
 def post_comment(post_id):

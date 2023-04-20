@@ -1,2 +1,3 @@
 - switch ids to just using the names
 - add posed_on to preveiw on homepage
+- dont require all_posts, just use posts if it is not given
