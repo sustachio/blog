@@ -1,6 +1,7 @@
 from os import listdir
 from markdown import markdown
 import time
+from re import sub
 
 class Database():
     def __init__(self, connection):
@@ -9,23 +10,23 @@ class Database():
 
     def make_tables(self):
         self.db_cursor.execute("DROP TABLE posts")
-        #self.db_cursor.execute("DROP TABLE comments")
+        self.db_cursor.execute("DROP TABLE comments")
 
         self.db_cursor.execute("""CREATE TABLE posts (
-            post_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+            post_id text PRIMARY KEY NOT NULL,
             title text,
             type text,
             posted_on date,
             content text
         )""")
         
-        # self.db_cursor.execute("""CREATE TABLE comments (
-        #     comment_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-        #     post_id integer,
-        #     user_name text,
-        #     posted_on date,
-        #     content text
-        # )""")     
+        self.db_cursor.execute("""CREATE TABLE comments (
+            comment_id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+            post_id text,
+            user_name text,
+            posted_on date,
+            content text
+        )""")     
 
         self.db.commit()
 
@@ -46,14 +47,16 @@ class Database():
                 "title": title,
                 "type": type,
                 "date": date,
-                "id": id,
                 "content": content
             })
 
     def add_post(self, post):
+        # replace non-url charecters with -
+        id = sub(r"[^0-9a-zA-Z]+", '-', post["title"].lower().strip())
+        
         self.db_cursor.execute("""INSERT INTO posts
                   VALUES(?,?,?,?,?)""",
-                  (None, post["title"],  post["type"], post["date"], post["content"]))
+                  (id, post["title"],  post["type"], post["date"], post["content"]))
         
         self.db.commit()
 

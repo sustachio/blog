@@ -71,7 +71,7 @@ def find_me():
         extra_css=random_css(page)
     )
 
-@app.route("/post/<int:post_id>")
+@app.route("/post/<post_id>")
 def post(post_id):
     post = db.get_post(post_id)
 
@@ -91,7 +91,7 @@ def post(post_id):
         extra_css=random_css(page)
     )
 
-@app.route("/post_comment/<int:post_id>", methods=["POST"])
+@app.route("/post_comment/<post_id>", methods=["POST"])
 def post_comment(post_id):
     print("fetched")
     db.add_comment(post_id, request.form.get("name"), request.form.get("comment"))
