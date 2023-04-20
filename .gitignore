@@ -1,0 +1,9 @@
+.config/
+.upm/
+venv/
+.replit
+git_config.sh
+poetry.lock
+pyproject.toml
+replit.nix
+__pycache__
