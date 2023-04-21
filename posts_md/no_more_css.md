@@ -38,8 +38,8 @@ Want to try it out? I built it into this website! Just add `?random_css=1` to th
 
 Here are some links to a few pages with random css:
 
-- <a href="{{ url_for('home') }}">Home</a>
-- <a href="{{ url_for('findme') }}">Find Me</a> (this is my favorite for the random css)
-- <a href="{{ url_for('post', post_id='never-write-a-line-of-css-again') }}">This Post</a>
+- <a href="{{ url_for('home', random_css=1) }}">Home</a>
+- <a href="{{ url_for('find_me', random_css=1) }}">Find Me</a> (this is my favorite for the random css)
+- <a href="{{ url_for('post', post_id='never-write-a-line-of-css-again', random_css=1) }}">This Post</a>
 
 If you want to try it yourself (or modify it), I wrote instructions on how to use it on it's [github](https://github.com/sustachio/random-css).
