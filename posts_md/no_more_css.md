@@ -1,16 +1,16 @@
 Never Write a Line of CSS Again
 Project
-4/20/23
-Any time I have to do a frontent (website) project I always end up spending too much time writing CSS, which can often lead to me giving up on it. To solve this, I created [random-css](https://github.com/sustachio/random-css), a tool which writes quality css for you.
+4/21/23
+Any time I have to do a project involving making a website, I always end up spending too much time writing CSS, which often leads to me giving up on it or just making bad styles. To solve this, I created [random-css](https://github.com/sustachio/random-css), a tool which writes quality CSS for you.
 
-You can give it any HTML and it will spit out some css for you giving styles to all of your tags, classes, and ids. 
+You can give it any HTML and it will spit out some css making styles for all of your tags, classes, and ids. If you dislike the styles it gives you, all you need to to is run it again and get a complety new page.
 
 For example I could give it:
 
     <h1 id="title">Hello</h1>
     <p class="paragraph">World</p>
 
-And I could get:
+And I might get back:
 
     p {
         background-color: teal;
@@ -34,12 +34,12 @@ And I could get:
         display: block;
     }
 
-Want to try it out? I built it into this website! Just add `?random_css=1` to the end of any url to get a page that a computer designed.
+You can easily customize what propreties it can or can't make by changing the `propreties` variable in the source code.
 
-Here are some links to a few pages with random css:
+Want to try it out? I built it right into this website! Just add `?random_css=1` to the end of any url on this site to get a computer-designed webpage. Here's links to some pages with random css applied: (make sure to reload a few times and see how different each one is)
 
 - <a href="{{ url_for('home', random_css=1) }}">Home</a>
-- <a href="{{ url_for('find_me', random_css=1) }}">Find Me</a> (this is my favorite for the random css)
+- <a href="{{ url_for('find_me', random_css=1) }}">Find Me</a>
 - <a href="{{ url_for('post', post_id='never-write-a-line-of-css-again', random_css=1) }}">This Post</a>
 
-If you want to try it yourself (or modify it), I wrote instructions on how to use it on it's [github](https://github.com/sustachio/random-css).
+If you want to try it on your own code (or modify it), I wrote instructions on how to use it on its [github](https://github.com/sustachio/random-css).
