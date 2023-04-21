@@ -7,8 +7,6 @@ app = Flask(__name__)
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
 
-db.make_posts_from_md()
-
 random_css = lambda html : (
     generate_css(html) 
         if request.args.get("random_css") 
@@ -98,6 +96,6 @@ def post_comment(post_id):
 
     return redirect(url_for("post", post_id=post_id))
     
-    
+db.make_posts_from_md(app)
 
 app.run(host='0.0.0.0', port=81)

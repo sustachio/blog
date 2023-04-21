@@ -1,6 +1,7 @@
 Jinja is Awesome
 Post
 4/14/23
+{%raw%}
 While making the server for this blog using Flask (a python library for web servers), I discovered the wonders of the Jinja templating engine.
 
 ## What it is
@@ -34,7 +35,9 @@ This is great because it allows you to generate lots of similar files that are a
 ## How I use it
 
 I use Jinja in my blog to render the posts on the homepage and in the left sidebar. To create the left side bar I have this `<ul>` in my template:
+
 __templates/index.html__
+
     All Posts:
     <ul>
         {% for post in posts|reverse %}
@@ -47,7 +50,9 @@ __templates/index.html__
     </ul>
 
 (`reverse` is a filter that will reverse the order of posts and `url_for` will generate the url for the post) And this code in the python script:
+
 __main.py__
+
     @app.route('/')
     def home():
         return render_template("index.html", posts=get_posts())
@@ -56,6 +61,7 @@ This will result in a nice list of the posts from newest to oldest:
 ![List of all posts](../static/all_posts_list.png "List of all posts")
 
 Or this HTML:
+
     <ul>
         <li><a href="/post/1">Jinja is Awesome</a></li>           
         <li><a href="/post/0">A Blog Post About This Blog</a></li>
@@ -74,3 +80,4 @@ It makes a near direct link between the server code and the HTML, which makes it
 Jinja is a great tool for rendering pages on the server, but can also be used for many other things. It results in fast, easily editable pages, and a connection between the code/database and HTML that is delivered to a user.
 
 This post was just meant to be an extremely simple introduction to what Jinja is, but there is so much more to it. If you would like to learn more, there are hundreds of resources online. I would recommend learning it alongside Flask, as it has Jinja built-in.
+{%endraw%}

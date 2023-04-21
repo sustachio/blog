@@ -2,6 +2,7 @@ from os import listdir
 from markdown import markdown
 import time
 from re import sub
+from flask import render_template_string
 
 class Database():
     def __init__(self, connection):
@@ -30,18 +31,23 @@ class Database():
 
         self.db.commit()
 
-    def make_posts_from_md(self):
+    def make_posts_from_md(self, app):
         # delete old data
         self.db_cursor.execute("DELETE FROM posts")
         self.db.commit()
-        
+
         for file in listdir("posts_md/"):
+            # read md rendering jinja
+            with app.app_context(), app.test_request_context(), open("posts_md/"+file, "r") as f:
+                text = render_template_string(f.read())
+                
             # convert md to html
-            with open("posts_md/" + file, "r") as f:
-                (title, type, date, *content) = f.readlines()
-    
-                content = markdown("\n".join(content))
-                type = type.strip()
+            (title, type, date, *content) = text.split("\n")
+
+            content = markdown("\n".join(content))
+            type = type.strip()
+            date = date.strip()
+            title = title.strip()
         
             self.add_post({
                 "title": title,
