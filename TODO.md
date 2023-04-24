@@ -1,4 +1,3 @@
-- !!! Rederect broken posts links to 404
 - fix post comment size on small screens
 - add related links to posts
 - don't require two render templates in page routes

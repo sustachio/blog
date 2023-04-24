@@ -39,10 +39,11 @@ def projects():
     )
 
 @app.errorhandler(404)
-def page_not_found(e):
+@app.route("/404")
+def page_not_found(_=None):
     page = render_template(
         "404.html",
-        posts=db.get_projects(),
+        posts=db.get_posts(),
     )
     return render_template(
         "head.html",
@@ -71,8 +72,8 @@ def find_me():
 def post(post_id):
     post = db.get_post(post_id)
 
-    if "error" in post:
-        return render_template('404.html'), 404
+    if post == "error":
+        return redirect(url_for("page_not_found"))
 
     page = render_template(
         "post.html", 

@@ -69,6 +69,9 @@ class Database():
     def get_post(self, post_id):
         self.db_cursor.execute("SELECT * FROM posts WHERE post_id=?",(post_id,))
         post = self.db_cursor.fetchone()
+
+        if not post:
+            return "error"
     
         return {
             "id": post[0],
