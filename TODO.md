@@ -1,3 +1,4 @@
-- dont require all_posts, just use posts if it is not given
+- !!! Fix 404 page
+- !!! Rederect broken posts links to 404
 - fix post comment size on small screens
 - add related links to posts
