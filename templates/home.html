@@ -23,6 +23,7 @@
                         url_for('post', post_id=post.id)
                     +"\">... read more</a>" 
                 %}
+                {{ post.date }}
                 {{ post.content|
                     truncate(
                         see_more|length+480,
