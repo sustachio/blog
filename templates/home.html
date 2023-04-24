@@ -9,10 +9,10 @@
         <tr>
             <th>
             <a href="{{ url_for('post', post_id=post.id) }}">
+                {{ post.title }} 
                 {% if post.type != "Post" %}
-                    {{ post.type }}: 
+                    ({{ post.type|lower }}): 
                 {% endif %}
-                {{ post.title }}
             </a>
             </th>
         </tr>
