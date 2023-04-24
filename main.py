@@ -7,48 +7,44 @@ app = Flask(__name__)
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
 
-random_css = lambda html : (
-    generate_css(html) 
-        if request.args.get("random_css") 
-        else None
+page_wrapper = lambda page : (
+    render_template(
+        "head.html",    # wrapper template
+        body=page,
+        extra_css = (   # make random css if random_css
+                generate_css(page) 
+                    if request.args.get("random_css") 
+                    else None
+        )
+    )
 )
 
 @app.route('/')
 def home():
-    page = render_template(
+    return page_wrapper(
+        render_template(
             "home.html", 
             posts=db.get_posts()
-        )
-    return render_template(
-            "head.html",
-            body=page,
-            extra_css=random_css(page)
-        )
+        ))
 
 @app.route("/projects")
 def projects():
-    page = render_template(
-        "home.html", 
-        all_posts=db.get_posts(), 
-        posts=db.get_projects(),
-    )
-    return render_template(
-        "head.html",
-        body=page,
-        extra_css=random_css(page)
+    return page_wrapper(
+        render_template(
+            "home.html", 
+            all_posts=db.get_posts(), 
+            posts=db.get_projects(),
+        )
     )
 
 @app.errorhandler(404)
 @app.route("/404")
 def page_not_found(_=None):
-    page = render_template(
-        "404.html",
-        posts=db.get_posts(),
-    )
-    return render_template(
-        "head.html",
-        body=page,
-        extra_css=random_css(page)
+    return page_wrapper(
+            render_template(
+            "404.html",
+            posts=db.get_posts(),
+        )
     ), 404
 
 @app.route("/about")
@@ -57,15 +53,12 @@ def about():
 
 @app.route("/findme")
 def find_me():
-    page = render_template(
-        "find me.html", 
-        posts=db.get_posts(),
-        all_posts=db.get_posts(), 
-    )
-    return render_template(
-        "head.html",
-        body=page,
-        extra_css=random_css(page)
+    return page_wrapper(
+        render_template(
+            "find me.html", 
+            posts=db.get_posts(),
+            all_posts=db.get_posts(), 
+        )
     )
 
 @app.route("/post/<post_id>")
@@ -75,18 +68,16 @@ def post(post_id):
     if post == "error":
         return redirect(url_for("page_not_found"))
 
-    page = render_template(
-        "post.html", 
-        post=post, 
-        posts=db.get_posts(),
-        all_posts=db.get_posts(),
-        comments=db.get_comments(post_id),
+    return page_wrapper(
+        render_template(
+            "post.html", 
+            post=post, 
+            posts=db.get_posts(),
+            all_posts=db.get_posts(),
+            comments=db.get_comments(post_id),
+        )
     )
-    return render_template(
-        "head.html",
-        body=page,
-        extra_css=random_css(page)
-    )
+
 
 @app.route("/post_comment/<post_id>", methods=["POST"])
 def post_comment(post_id):
