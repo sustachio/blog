@@ -1,4 +1,3 @@
-- !!! Fix 404 page
 - !!! Rederect broken posts links to 404
 - fix post comment size on small screens
 - add related links to posts

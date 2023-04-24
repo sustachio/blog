@@ -43,12 +43,12 @@ def page_not_found(e):
     page = render_template(
         "404.html",
         posts=db.get_projects(),
-    ), 404
+    )
     return render_template(
         "head.html",
         body=page,
         extra_css=random_css(page)
-    )
+    ), 404
 
 @app.route("/about")
 def about():
