@@ -1,2 +1,3 @@
 - add posed_on to preveiw on homepage
 - dont require all_posts, just use posts if it is not given
+- fix post comment size on small screens
