@@ -12,7 +12,14 @@
             <br>
             All Posts:
             <ul>
-                {% for post in all_posts|reverse %}
+                {# only use all_posts if it is given #}
+                {% if all_posts %}
+                    {% set side_posts = all_posts %}
+                {% else %}
+                    {% set side_posts = posts %}
+                {% endif %}
+                
+                {% for post in side_posts|reverse %}
                     <li><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></li>
                 {% endfor %}
             </ul>

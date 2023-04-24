@@ -17,7 +17,6 @@ random_css = lambda html : (
 def home():
     page = render_template(
             "home.html", 
-            all_posts=db.get_posts(), 
             posts=db.get_posts()
         )
     return render_template(
@@ -43,7 +42,6 @@ def projects():
 def page_not_found(e):
     page = render_template(
         "404.html",
-        all_posts=db.get_posts(), 
         posts=db.get_projects(),
     ), 404
     return render_template(
