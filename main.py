@@ -7,8 +7,8 @@ app = Flask(__name__)
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
 
-page_wrapper = lambda page : (
-    render_template(
+def page_wrapper(page): 
+    return render_template(
         "head.html",    # wrapper template
         body=page,
         extra_css = (   # make random css if random_css
@@ -17,7 +17,6 @@ page_wrapper = lambda page : (
                     else None
         )
     )
-)
 
 @app.route('/')
 def home():
