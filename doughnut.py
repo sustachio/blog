@@ -73,7 +73,7 @@ class MyHTMLParser(HTMLParser):
         result = ""
         for item in self.parsed:
             if item[0] == "start_tag":
-                result += f"<{item[1]} {' '.join([attr[0]+'='+attr[1] for attr in item[2] if attr[1]])}>"
+                result += f"<{item[1]} {' '.join([(attr[0]+'='+attr[1] if attr[1] else attr[0]) for attr in item[2]])}>"
             elif item[0] == "end_tag":
                 result += f"</{item[1]}>"
             elif item[0] == "data":
