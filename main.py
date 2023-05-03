@@ -8,21 +8,21 @@ app = Flask(__name__)
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
 
-def page_wrapper(page): 
+def page_wrapper(page):
     return render_template(
         "head.html",    # wrapper template
         body= (
             doughnut.generate_html(page)
-                if request.args.get("doughnut")
+                if request.args.get("doughnut") != None
                 else page
         ),
         extra_css = (   # make random css if random_css
             css_maker.generate_css(page) 
-                if request.args.get("random_css") 
+                if request.args.get("random_css") != None
                 else ""
         ) + (
             "*{white-space: pre-wrap;font-family: monospace;}"
-                if request.args.get("doughnut")
+                if request.args.get("doughnut") != None
                 else ""
         )
     )
