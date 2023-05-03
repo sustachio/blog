@@ -5,4 +5,6 @@ git_config.sh
 poetry.lock
 pyproject.toml
 replit.nix
-__pycache__
+__pycache__/
+database.db
+backups/
