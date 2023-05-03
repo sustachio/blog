@@ -10,8 +10,11 @@ class Database():
         self.db_cursor = self.db.cursor()
 
     def make_tables(self):
-        self.db_cursor.execute("DROP TABLE posts")
-        self.db_cursor.execute("DROP TABLE comments")
+        try:
+            self.db_cursor.execute("DROP TABLE posts")
+            self.db_cursor.execute("DROP TABLE comments")
+        except:
+            pass
 
         self.db_cursor.execute("""CREATE TABLE posts (
             post_id text PRIMARY KEY NOT NULL,
