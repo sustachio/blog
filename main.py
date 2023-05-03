@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from database import Database
 from css_maker import generate_css
 import sqlite3
+import doughnut
 
 app = Flask(__name__)
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
@@ -10,11 +11,19 @@ db = Database(db_connection)
 def page_wrapper(page): 
     return render_template(
         "head.html",    # wrapper template
-        body=page,
+        body= (
+            doughnut.generate_html(page)
+                if request.args.get("doughnut")
+                else page
+        ),
         extra_css = (   # make random css if random_css
-                generate_css(page) 
-                    if request.args.get("random_css") 
-                    else None
+            generate_css(page) 
+                if request.args.get("random_css") 
+                else ""
+        ) + (
+            "*{white-space: pre-wrap;font-family: monospace;}"
+                if request.args.get("doughnut")
+                else ""
         )
     )
 
