@@ -36,10 +36,10 @@ And I might get back:
 
 You can easily customize what propreties it can or can't make by changing the `propreties` variable in the source code.
 
-Want to try it out? I built it right into this website! Just add `?random_css=1` to the end of any url on this site to get a computer-designed webpage. Here's links to some pages with random css applied: (make sure to reload a few times and see how different each one is)
+Want to try it out? I built it right into this website! Just add `?random_css` to the end of any url on this site to get a computer-designed webpage. Here's links to some pages with random css applied: (make sure to reload a few times and see how different each one is)
 
-- <a href="{{ url_for('home', random_css=1) }}">Home</a>
-- <a href="{{ url_for('find_me', random_css=1) }}">Find Me</a>
-- <a href="{{ url_for('post', post_id='never-write-a-line-of-css-again', random_css=1) }}">This Post</a>
+- <a href="{{ url_for('home') }}?random_css">Home</a>
+- <a href="{{ url_for('find_me') }}?random_css">Find Me</a>
+- <a href="{{ url_for('post', post_id='never-write-a-line-of-css-again') }}?random_css">This Post</a>
 
 If you want to try it on your own code (or modify it), I wrote instructions on how to use it on its [github](https://github.com/sustachio/random-css).
