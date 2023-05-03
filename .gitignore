@@ -8,3 +8,5 @@ replit.nix
 __pycache__/
 database.db
 backups/
+.replit
+.breakpoints
