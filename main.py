@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from database import Database
-from css_maker import generate_css
+import css_maker
 import sqlite3
 import doughnut
 
@@ -17,7 +17,7 @@ def page_wrapper(page):
                 else page
         ),
         extra_css = (   # make random css if random_css
-            generate_css(page) 
+            css_maker.generate_css(page) 
                 if request.args.get("random_css") 
                 else ""
         ) + (
