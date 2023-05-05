@@ -134,8 +134,8 @@ class Database():
         self.db_cursor.execute("SELECT * FROM comments WHERE post_id=? ORDER BY posted_on", (post_id,))
 
         return [{
-            "parent_post_id": comment[0],
-            "comment_id": comment[1],
+            "parent_post_id": comment[1],
+            "comment_id": comment[0],
             "user_name": comment[2],
             "posted_on": comment[3],
             "content": comment[4]
