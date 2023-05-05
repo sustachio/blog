@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h1>Portfolio</h1>
+
+<p>Welcome to my portfolio page! Here you can find a collection of my past projects. Enjoy!</p>
+
+<h2>Projects</h2>
+
+(this is not all of my projects, this page is still under construction)
+
+<p><u>CSS-Maker</u> - A tool to make randomized css for any webpage.
+    (<a href="https://github.com/sustachio/random-css" target="_blank">Github</a>)
+    (<a href="{{ url_for('post', post_id='never-write-a-line-of-css-again') }}">Blog Post</a>)
+</p>
+
+
+<p><u>Blog</u> - A place for me to put my projects, and write about stuff.
+    (<a href="https://github.com/sustachio/blog" target="_blank">Github</a>)
+    (<a href="https://blog.sustachi0.repl.co" target="_blank">Replit Hosting</a>)
+    (<a href="{{ url_for('post', post_id='a-blog-post-about-this-blog') }}">Blog Post</a>)
+</p>
+
+
+<p><u>Row Your Life</u> - A simple game about rowing through parts of my life. Made for my high school application. 
+    (<a href="https://replit.com/@sustachi0/Row-Your-Life-LASA-application" target="_blank">Replit</a>)
+    (<a href="https://drive.google.com/file/d/1tpQ0m5TNVqvCLb0CKVk8yxsxWBIwOzb5/view?usp=share_link", target="_blank">Playthrough Video</a>)</p> 
+
+
+<p></p>
+
+{% endblock %}
