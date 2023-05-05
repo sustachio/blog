@@ -35,6 +35,15 @@ def home():
             posts=db.get_posts()
         ))
 
+@app.route("/portfolio")
+def portfolio():
+    return page_wrapper(
+        render_template(
+            "portfolio.html",
+            posts=db.get_posts()
+        )
+    )
+
 @app.route("/projects")
 def projects():
     return page_wrapper(
