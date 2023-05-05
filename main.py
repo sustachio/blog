@@ -52,6 +52,15 @@ def page_not_found(_=None):
         )
     ), 404
 
+@app.route("/portfolio")
+def portfolio():
+    return page_wrapper(
+        render_template(
+            "portfolio.html",
+            posts=db.get_posts()
+        )
+    )
+
 @app.route("/projects")
 def projects():
     return page_wrapper(
