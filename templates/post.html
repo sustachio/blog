@@ -11,7 +11,7 @@
 <h2>Comments</h2>
 
 {% if comments|length %}
-    {% for comment in comments|reverse %}
+    {% for comment in comments %}
         <div class="comment" id="{{ comment.comment_id }}">
             <b>{{ comment.user_name }} on {{ comment.posted_on }}</b><br>
             {{ comment.content }}
