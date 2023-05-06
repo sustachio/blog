@@ -55,10 +55,6 @@ def page_not_found(_=None):
         )
     ), 404
 
-@app.route("/about")
-def about():
-    return "under construction"
-
 @app.route("/findme")
 def find_me():
     return page_wrapper(
