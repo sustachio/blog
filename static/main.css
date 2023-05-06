@@ -22,10 +22,16 @@ footer {
 code {
     display: inline-block;
     background: rgba(0,0,0,.1);
+    overflow: auto;
+    max-width: calc(100vw - 8rem);
 }
 
 .comment {
     margin: 1rem 0;
+}
+
+#email {
+    overflow-wrap: anywhere;
 }
 
 #post-comment {
@@ -72,7 +78,7 @@ code {
     }
 
     #page-list {
-        width: 25%;
+        width: 10%;
     }
 }
 
@@ -80,5 +86,9 @@ code {
     #post-content {
         margin-left: 0;
         width: 100%
+    }
+
+    #post-comment input, #post-comment textarea {
+        width: 90%;
     }
 }

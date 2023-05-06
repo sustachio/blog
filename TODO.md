@@ -1,2 +1,1 @@
-- fix post comment size on small screens
 - add related links to posts
