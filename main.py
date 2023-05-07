@@ -89,7 +89,8 @@ def post_comment(post_id):
     db.add_comment(post_id, request.form.get("name"), request.form.get("comment"))
 
     return redirect(url_for("post", post_id=post_id))
-    
+
 db.make_posts_from_md(app)
 
-app.run(host='0.0.0.0', port=81)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=81)
