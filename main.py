@@ -30,7 +30,6 @@ def page_wrapper(page):
 
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
-db.make_posts_from_md(app)
 
 ###### STATIC PAGES ######
 
@@ -102,5 +101,6 @@ def post_comment(post_id):
 
 ###################
 
+db.make_posts_from_md(app)
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81)
