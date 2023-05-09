@@ -1,6 +1,6 @@
 # blog
 
-This is the repo for my blog site. Right now it is only on replit at blog.sustachi0.repl.co , but I plan on hosting it on sethmueller.page once I can figure out how to get an SSL certificate.
+This is the repo for my blog site. Now self-hosted at: [https://sethmueller.page](https://sethmueller.page)!
 
 You can find all of the posts in `posts_md/`
 
