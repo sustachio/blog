@@ -9,6 +9,9 @@ class Database():
         self.db = connection
         self.db_cursor = self.db.cursor()
 
+    
+    # create the tables for this database
+    # WARNING: ERASES ALL CURRENT DATA
     def make_tables(self):
         try:
             self.db_cursor.execute("DROP TABLE posts")
@@ -34,6 +37,10 @@ class Database():
 
         self.db.commit()
 
+    
+    ###### POSTS ######
+
+    
     def make_posts_from_md(self, app):
         # delete old data
         self.db_cursor.execute("DELETE FROM posts")
@@ -52,14 +59,15 @@ class Database():
             date = date.strip()
             title = title.strip()
         
-            self.add_post({
+            self.add_post_to_db({
                 "title": title,
                 "type": type,
                 "date": date,
                 "content": content
             })
 
-    def add_post(self, post):
+    
+    def add_post_to_db(self, post):
         # replace non-url charecters with -
         id = sub(r"[^0-9a-zA-Z]+", '-', post["title"].lower().strip())
         
@@ -69,6 +77,7 @@ class Database():
         
         self.db.commit()
 
+    
     def get_post(self, post_id):
         self.db_cursor.execute("SELECT * FROM posts WHERE post_id=?",(post_id,))
         post = self.db_cursor.fetchone()
@@ -100,6 +109,7 @@ class Database():
     
         return posts
 
+    
     def get_projects(self):
         self.db_cursor.execute('SELECT * FROM posts WHERE type=? ORDER BY posted_on', ("Project",))
         posts = [
@@ -114,8 +124,11 @@ class Database():
         ]
     
         return posts
-    
 
+    
+    ###### COMMENTS ######
+
+    
     def add_comment(self, post_id, user_name, content):
         self.db_cursor.execute("SELECT * FROM comments")
 
@@ -126,9 +139,11 @@ class Database():
 
         self.db.commit()
 
+    
     def delete_comment(self, comment_id):
         self.db_cursor.execute("DELTE FROM comments WHERE comment_id=?", (comment_id,))
         self.db.commit()
+        
 
     def get_comments(self, post_id):
         self.db_cursor.execute("SELECT * FROM comments WHERE post_id=? ORDER BY posted_on", (post_id,))
