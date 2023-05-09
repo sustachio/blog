@@ -1,0 +1,10 @@
+[Unit]
+Description=Blog Server
+
+[Service]
+Restart=on-failure
+RestartSec=30s
+ExecStart=/bin/sh -c "gunicorn -c /home/seth/blog/gunicorn.conf.py"
+
+[Install]
+WantedBy=multi-user.target
