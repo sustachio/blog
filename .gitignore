@@ -12,3 +12,4 @@ backups/
 .breakpoints
 fullchain.pem
 privkey.pem
+stats.json
