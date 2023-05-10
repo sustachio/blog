@@ -7,9 +7,7 @@ import doughnut
 app = Flask(__name__)
 
 # used to add to a page after it has been rendered
-def page_wrapper(page):
-    increment_visits()
-    
+def page_wrapper(page):    
     return render_template(
         "head.html",    # wrapper template
         body= (
@@ -37,6 +35,8 @@ db = Database(db_connection)
 
 @app.route('/')
 def home():
+    increment_visits()
+
     return page_wrapper(
         render_template(
             "home.html", 
