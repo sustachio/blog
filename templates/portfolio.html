@@ -5,51 +5,64 @@
 
 <p>Welcome to my portfolio page! Here you can find a collection of my past projects. Enjoy!</p>
 
-<h2>Projects</h2>
+<p>Key:</p>
+<ul>
+    <li><u class="activity">Blue</u> - an activity</li>
+    <li><u class="major-project">Yellow</u> - a major project</li>
+</ul>
 
-(this is not all of my projects, this page is still under construction)
+<base target="_blank">
 
 <h3>2023</h3>
 
 <p><u>CSS-Maker</u> - A tool to make randomized css for any webpage.
-    (<a href="https://github.com/sustachio/random-css" target="_blank">Github</a>)
+    (<a href="https://github.com/sustachio/random-css">Github</a>)
     (<a href="{{ url_for('post', post_id='never-write-a-line-of-css-again') }}">Blog Post</a>)
 </p>
 
 
-<p><u>Blog</u> - A place for me to put my projects, and write about stuff.
-    (<a href="https://github.com/sustachio/blog" target="_blank">Github</a>)
-    (<a href="https://blog.sustachi0.repl.co" target="_blank">Replit Hosting</a>)
+<p><u class="major-project">Blog</u> - A place for me to put my projects, and write about stuff.
+    (<a href="https://github.com/sustachio/blog">Github</a>)
+    (<a href="https://blog.sustachi0.repl.co">Replit Hosting</a>)
     (<a href="{{ url_for('post', post_id='a-blog-post-about-this-blog') }}">Blog Post</a>)
 </p>
 
-
-<p><u>Row Your Life</u> - A simple game about rowing through parts of my life. Made for my high school application. 
-    (<a href="https://replit.com/@sustachi0/Row-Your-Life-LASA-application" target="_blank">Replit</a>)
-    (<a href="https://drive.google.com/file/d/1tpQ0m5TNVqvCLb0CKVk8yxsxWBIwOzb5/view?usp=share_link", target="_blank">Playthrough Video</a>)</p> 
+<p><u class="activity">Plant Your Roots</u> - A game made with my friend for the 2023 annual Global Game Jam. Made in the Central Market Cafe as both of our power had gone out.
+(<a href="https://astrastudios.itch.io/plant-your-roots">Itch.io</a>)</p>
 
 <h3>2022</h3>
 
+<p><u class="major-project">Row Your Life</u> - A game about rowing through parts of my life. Made for my high school application. 
+    (<a href="https://replit.com/@sustachi0/Row-Your-Life-LASA-application">Replit</a>)
+    (<a href="https://drive.google.com/file/d/1tpQ0m5TNVqvCLb0CKVk8yxsxWBIwOzb5/view?usp=share_link">Playthrough Video</a>)</p> 
 
-<p><u>Climber</u> - An infinate game about flying up a tower to avoid the rising lava.
-    (<a href="https://sustachio.itch.io/climber" target="_blank">Itch.io</a>)
+<p><u class="activity">Special Kingdom</u> - A game made with my friend for Mini Jame Gam #12 about flipping gravity.
+(<a href="https://itch.io/jam/mini-jame-gam-12/rate/1653202">Submission</a>)
+(<a href="https://sustachio.itch.io/special-kingdom">Itch.io</a>)</p>
+
+<p><u class="activity">BEST Robotics Team #0490</u> - Competed for Kealing Middle School. I was on the software and construction teams.
+(<a href="https://docs.google.com/document/d/1jFIW0Zdoi_KnJVpghXxBLmte9jXFb5qJL2v6TK7w3v0/edit">Intro Info</a>)</p>
+
+<p><u>Climber</u> - An infinite game about flying up a tower to avoid the rising lava.
+    (<a href="https://sustachio.itch.io/climber">Itch.io</a>)
 </p>
 
+<p><u class="activity">Swip Swap</u> - A game made with my friend for the 2022 annual Global Game Jam about swapping between worlds to solve puzzles. This was our first game jam.
+(<a href="https://sustachio.github.io/">Github Pages</a>)</p>
 
 <h3>2021</h3>
 
+<p><u class="activity">Cyberpatriots XIV</u> - Competed for Kealing Middle School. Our team qualified for the national semi-finals and finished 7th in Texas!
+(<a href="https://www.icloud.com/sharedalbum/#B0iJ0DiRHJOKBi4">Photos/Videos</a>)</p>
+
 <p><u>Cube Spin</u> - A 3d renderer that lets you move, scale, and spin a cube.
-    (<a href="https://replit.com/@sustachio/cubeSpin" target="_blank">Replit</a>)
+    (<a href="https://replit.com/@sustachio/cubeSpin">Replit</a>)
 </p>
 
-<p><u>Bean Game</u> - A game played in your terminal where you and a computer take turns taking beans, trying not to end up taking the last bean. Made for coding class.
-    (<a href="https://replit.com/@sustachio/bean-game" target="_blank">Replit</a>)
+<p><u>Bean Game</u> - A game played in your terminal where you and a computer take turns taking beans, trying not to end up taking the last bean. Made for my coding class.
+    (<a href="https://replit.com/@sustachio/bean-game">Replit</a>)
 </p>
 
-<h3>Activities</h3>
-
-<p><u>BEST Robotics Compition 2022 Team #0490</u></p>
-
-<p><u>Cyberpatriots 2021</u></p>
+</base>
 
 {% endblock %}

@@ -30,6 +30,14 @@ code {
     margin: 1rem 0;
 }
 
+.activity {
+    background-color: lightblue;
+}
+
+.major-project {
+    background-color: lightyellow;
+}
+
 #email {
     overflow-wrap: anywhere;
 }
