@@ -3,6 +3,23 @@ from markdown import markdown
 import time
 from re import sub
 from flask import render_template_string
+from json import loads, dumps
+
+def get_visits():
+    with open("stats.json", "r") as f:
+        stats = loads(f.read())
+
+    return stats["visits"]
+
+def increment_visits():
+    with open("stats.json", "r") as f:
+        stats = loads(f.read())
+
+    stats["visits"] += 1
+
+    with open("stats.json", "w") as f:
+        f.write(dumps(stats))
+
 
 class Database():
     def __init__(self, connection):

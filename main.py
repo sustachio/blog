@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from database import Database
+from database import Database, get_visits, increment_visits
 import css_maker
 import sqlite3
 import doughnut
@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 # used to add to a page after it has been rendered
 def page_wrapper(page):
+    increment_visits()
+    
     return render_template(
         "head.html",    # wrapper template
         body= (
@@ -39,7 +41,7 @@ def home():
         render_template(
             "home.html", 
             posts=db.get_posts(),
-            visits=5269
+            visits=get_visits()
         ))
 
 @app.errorhandler(404)
