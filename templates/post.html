@@ -13,7 +13,7 @@
 {% if comments|length %}
     {% for comment in comments %}
         <div class="comment" id="{{ comment.comment_id }}">
-            <b>{{ comment.user_name }} on {{ comment.posted_on }}</b><br>
+            <b>{{ comment.user_name }} on {{ comment.posted_on }}</b>
             {{ comment.content }}
         </div>
     {% endfor %}
