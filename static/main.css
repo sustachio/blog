@@ -39,6 +39,16 @@ code {
     background-color: lightyellow;
 }
 
+#visit-numbers {
+    font-size: 0;
+    margin-bottom: 1rem;
+}
+
+.visit-number {
+    display: inline-block;
+    width: 2rem;
+}
+
 #email {
     overflow-wrap: anywhere;
 }

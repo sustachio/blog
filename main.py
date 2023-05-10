@@ -38,7 +38,8 @@ def home():
     return page_wrapper(
         render_template(
             "home.html", 
-            posts=db.get_posts()
+            posts=db.get_posts(),
+            visits=5269
         ))
 
 @app.errorhandler(404)
