@@ -8,7 +8,7 @@ While making the server for this blog using Flask (a python library for web serv
 
 In an HTML file (or any other type of file) you can type Jinja code, which will be converted or rendered back into normal HTML through a python script. The code has many features like loops, variables, if statements, and filters (which are very similar to functions).
 
-You can find Jinja's documentation <a href="https://jinja.palletsprojects.com/en/3.1.x/templates/" target="_blank">here</a>
+You can find Jinja's documentation [here](https://jinja.palletsprojects.com/en/3.1.x/templates/)
 
 Jinja tries to make its syntax similar to python, which makes templates very readable. In your template (HTML where you type the code), you can put Jinja statements in between {% and %}, and expressions in between {{ and }}.
 

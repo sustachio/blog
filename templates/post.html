@@ -22,7 +22,7 @@
 {% endif %}
 
 <h3>Post a comment:</h3>
-<form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}">
+<form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}" target="_self">
     <table>
         <tr>
             <th><label for="name">Name:</label></th>
