@@ -58,7 +58,7 @@ __main.py__
         return render_template("index.html", posts=get_posts())
 
 This will result in a nice list of the posts from newest to oldest:
-![List of all posts](../static/all_posts_list.png "List of all posts")
+![List of all posts]({%endraw%}{{ url_for('static', filename='all_posts_list.png') }}{%raw%} "List of all posts")
 
 Or this HTML:
 

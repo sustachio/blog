@@ -9,7 +9,7 @@ I've always wanted to make a blog but never got to it as it seemed like too big 
 
 The first thing you might be thinking is "This website looks basic." Well, luckily,  that was just the style I was going for. I am trying to make it look like the styling of the old old internet. Recently I found 2 very old computers in my attic and a box of floppy discs to run on them (which I may write an article about later), inspiring this theme. I might change up the styling a bit later but, for now, I will keep the table layout.
 
-![First version of the blog](../static/first_blog.png "First version of the blog")
+![First version of the blog]({{ url_for('static', filename='first_blog.png') }} "First version of the blog")
 _The first version of this blog_
 
 To add to the theme of an older webpage, I decided to challenge myself by not using any Javascript. I almost ended up not using css either, but I decided against it. The entire website is rendered on the server, including the "... see more"s (which took a while to get working) and the posts on the home page.
