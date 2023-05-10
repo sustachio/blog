@@ -8,19 +8,23 @@
     {{ post.content|safe }}
 </div>
 
-<h2>Comments</h2>
+<div id="comments">
 
-{% if comments|length %}
-    {% for comment in comments %}
-        <div class="comment" id="{{ comment.comment_id }}">
-            <b>{{ comment.user_name }} on {{ comment.posted_on }}</b>
-            {{ comment.content }}
-        </div>
-    {% endfor %}
-{% else %}
-    <p>No comments here yet. You should write one!</p>
-{% endif %}
+    <h2>Comments</h2>
+    
+    {% if comments|length %}
+        {% for comment in comments %}
+            <div class="comment" id="{{ comment.comment_id }}">
+                <b>{{ comment.user_name }} on {{ comment.posted_on }}</b>
+                {{ comment.content }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No comments here yet. You should write one!</p>
+    {% endif %}
 
+</div>
+    
 <h3>Post a comment:</h3>
 <form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}" target="_self">
     <table>
@@ -41,4 +45,6 @@
     <input type="submit" value="Post Comment">
 </form>
 
+
+    
 {% endblock %}
