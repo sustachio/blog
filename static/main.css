@@ -22,6 +22,8 @@ footer {
 code {
     display: inline-block;
     background: rgba(0,0,0,.1);
+    white-space: pre;
+    font-family: monospace;
     overflow: auto;
     max-width: calc(100vw - 8rem);
 }
