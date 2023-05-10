@@ -1,6 +1,5 @@
 Todo:
 - add related links to posts
-- add old-school links counter
 
 Posts:
 - write about sethmueller.page
