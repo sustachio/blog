@@ -44,8 +44,8 @@ Just like my [random-css]({{ url_for('post', post_id='never-write-a-line-of-css-
 
 Here are some links to try it out with:
 
-- <a href="{{ url_for('home') }}?doughnut">Home</a>
-- <a href="{{ url_for('find_me') }}?doughnut">Find Me</a>
-- <a href="{{ url_for('post', post_id='turn-your-text-into-doughnuts') }}?doughnut">This Post</a>
+- <a href="{{ url_for('home') }}?doughnut" target="_self">Home</a>
+- <a href="{{ url_for('find_me') }}?doughnut" target="_self">Find Me</a>
+- <a href="{{ url_for('post', post_id='turn-your-text-into-doughnuts') }}?doughnut" target="_self">This Post</a>
 
 If you want to try it out yourself, it is documented on its [github]([https://github.com/sustachio/](https://github.com/sustachio/doughnut-text-formater)).
