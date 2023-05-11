@@ -8,9 +8,12 @@
     {{ post.content|safe }}
 </div>
 
-<div id="comments">
+<h2>Comments</h2>
 
-    <h2>Comments</h2>
+<p>Do to unfortunate circumstances (my little brother showing his friends this site) I have decided to temporally disable comments untill I can get a moderation system working.</p>
+
+{#
+<div id="comments">
     
     {% if comments|length %}
         {% for comment in comments %}
@@ -44,7 +47,6 @@
     </table>
     <input type="submit" value="Post Comment">
 </form>
+#}
 
-
-    
 {% endblock %}
