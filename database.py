@@ -4,6 +4,7 @@ import time
 from re import sub
 from flask import render_template_string
 from json import loads, dumps
+import moderation
 
 def get_visits():
     with open("stats.json", "r") as f:
@@ -49,11 +50,17 @@ class Database():
             post_id text,
             user_name text,
             posted_on date,
-            content text
+            content text,
+            public tinyint
         )""")     
 
         self.db.commit()
 
+    def update_tables(self):
+        self.db_cursor.execute("ALTER TABLE comments ADD COLUMN public TINYINT")
+        self.db_cursor.execute("UPDATE comments SET public=0")
+        self.db.commit()
+        return
     
     ###### POSTS ######
 
@@ -151,11 +158,30 @@ class Database():
 
         posted_on = time.strftime('%Y-%m-%d')
         
-        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?)",
+        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?,0)",
                               (None, post_id, user_name, posted_on, content))
 
         self.db.commit()
 
+        # validate it
+        self.db_cursor.execute("SELECT last_insert_rowid()")
+        moderation.validate_comment(self.db_cursor.fetchone()[0])
+
+    def get_comment(self, comment_id):
+        self.db_cursor.execute("SELECT * FROM comments WHERE comment_id=?",(comment_id,))
+        comment = self.db_cursor.fetchone()
+
+        if not comment:
+            return "error"
+    
+        return {
+            "comment_id": comment[0],
+            "post_id": comment[1],
+            "user_name": comment[2],
+            "posted_on": comment[3],
+            "content": comment[4],
+            "public": comment[5]
+        }
     
     def delete_comment(self, comment_id):
         self.db_cursor.execute("DELTE FROM comments WHERE comment_id=?", (comment_id,))
@@ -163,12 +189,25 @@ class Database():
         
 
     def get_comments(self, post_id):
-        self.db_cursor.execute("SELECT * FROM comments WHERE post_id=? ORDER BY posted_on", (post_id,))
+        self.db_cursor.execute("SELECT * FROM comments WHERE (post_id=? AND public=1) ORDER BY posted_on", (post_id,))
 
         return [{
-            "parent_post_id": comment[1],
             "comment_id": comment[0],
+            "post_id": comment[1],
             "user_name": comment[2],
             "posted_on": comment[3],
-            "content": comment[4]
+            "content": comment[4],
+            "public": comment[5]
+        } for comment in self.db_cursor.fetchall()]
+
+    def get_all_comments(self):
+        self.db_cursor.execute("SELECT * FROM comments ORDER BY posted_on")
+
+        return [{
+            "comment_id": comment[0],
+            "post_id": comment[1],
+            "user_name": comment[2],
+            "posted_on": comment[3],
+            "content": comment[4],
+            "public": comment[5]
         } for comment in self.db_cursor.fetchall()]

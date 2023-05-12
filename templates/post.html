@@ -10,9 +10,6 @@
 
 <h2>Comments</h2>
 
-<p>Do to unfortunate circumstances (my little brother showing his friends this site) I have decided to temporally disable comments untill I can get a moderation system working.</p>
-
-{#
 <div id="comments">
     
     {% if comments|length %}
@@ -29,6 +26,7 @@
 </div>
     
 <h3>Post a comment:</h3>
+<p>NOTE: All comments will be reviewed before they are posted, so it may take a while for your comment to appear. Please be mature.</p>
 <form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}" target="_self">
     <table>
         <tr>
@@ -47,6 +45,5 @@
     </table>
     <input type="submit" value="Post Comment">
 </form>
-#}
 
 {% endblock %}

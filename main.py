@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from database import Database, get_visits, increment_visits
+import moderation
 import css_maker
 import sqlite3
 import doughnut
@@ -30,6 +31,12 @@ def page_wrapper(page):
 
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
+#db.update_tables()
+
+###### MODERATION ######
+
+moderation.start_up(db)
+#moderation.validate_all_comments()
 
 ###### STATIC PAGES ######
 
