@@ -192,9 +192,10 @@ class Database():
         self.db_cursor.execute("SELECT * FROM comments WHERE (post_id=? AND public=1) ORDER BY posted_on", (post_id,))
 
         return [{
-            "parent_post_id": comment[1],
             "comment_id": comment[0],
+            "post_id": comment[1],
             "user_name": comment[2],
             "posted_on": comment[3],
-            "content": comment[4]
+            "content": comment[4],
+            "public": comment[5]
         } for comment in self.db_cursor.fetchall()]
