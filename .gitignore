@@ -13,3 +13,4 @@ backups/
 fullchain.pem
 privkey.pem
 stats.json
+start_server.sh

@@ -4,7 +4,7 @@ Description=Blog Server
 [Service]
 Restart=on-failure
 RestartSec=30s
-ExecStart=/bin/sh -c "gunicorn -c /home/seth/blog/gunicorn.conf.py"
+ExecStart=/home/seth/blog/start_server.sh
 
 [Install]
 WantedBy=multi-user.target
