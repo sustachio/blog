@@ -34,8 +34,8 @@ db = Database(db_connection)
 
 ###### MODERATION ######
 
-print(db.get_comment(1))
-moderation.validate_comment(db.get_comment(1))
+moderation.start_up(db)
+moderation.validate_comment(1)
 #db.update_tables()
 
 ###### STATIC PAGES ######

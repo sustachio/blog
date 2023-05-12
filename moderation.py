@@ -7,8 +7,11 @@ import asyncio
 
 MY_ID = 760189518934048778
 STARTED = False
+db = None
 
 intents = discord.Intents.default()
+intents.reactions = True
+intents.members = True
 client = discord.Client(intents=intents)
 
 @client.event
@@ -21,14 +24,36 @@ async def on_ready():
     user = await client.fetch_user(MY_ID)
     await user.send("I'm running!")
 
-def validate_comment(comment):    
+@client.event
+async def on_reaction_add(reaction, user):
+    if client.user == user: # if its reacting to its own messages
+        return
+
+    if reaction.emoji == u"❌":
+        public = 0
+    elif reaction.emoji == u"✅":
+        public = 1
+    else:
+        return
+
+    id = reaction.message.content.split("`")[1]
+
+    db.db_cursor.execute("UPDATE comments SET public=? WHERE comment_id=?", (public, id))
+    db.db.commit()
+
+    me = await client.fetch_user(MY_ID)
+    await me.send(f"Set comment `{id}`'s visibility to {public}")
+
+def validate_comment(id):
+    comment = db.get_comment(id)
+    
     async def inner():
         async def inner_inner():
-            user = await client.fetch_user(MY_ID)
+            me = await client.fetch_user(MY_ID)
         
-            message = await user.send(f"""Comment `{comment["comment_id"]}`:
-    > __{comment["user_name"]} on {comment["posted_on"]} under {comment["post_id"]}__
-    > """ + "\n> ".join(comment["content"].split("\n")))
+            message = await me.send(f"""**--------Comment `{comment["comment_id"]}`--------**
+> __{comment["user_name"]} on {comment["posted_on"]} under {comment["post_id"]}__
+> """ + "\n> ".join(comment["content"].split("\n")))
         
             await message.add_reaction(u"❌")
             await message.add_reaction(u"✅")
@@ -38,10 +63,14 @@ def validate_comment(comment):
 
     asyncio.run_coroutine_threadsafe(inner(), client.loop)
 
+def start_up(db_):
+    global db
+    db = db_
+    
+    # start client in background
+    threading.Thread(target=lambda : client.run(os.environ["DISCORD_KEY"])).start()
+    print("Starting moderation bot...")
 
-
-# start client in background
-threading.Thread(target=lambda : client.run(os.environ["DISCORD_KEY"])).start()
-print("Starting moderation bot...")
-while not STARTED:
-    pass
+    # wait
+    while not STARTED:
+        pass
