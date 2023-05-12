@@ -63,6 +63,10 @@ def validate_comment(id):
 
     asyncio.run_coroutine_threadsafe(inner(), client.loop)
 
+def validate_all_comments():
+    for comment in db.get_all_comments():
+        validate_comment(comment["comment_id"])
+
 def start_up(db_):
     global db
     db = db_

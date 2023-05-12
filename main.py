@@ -36,6 +36,7 @@ db = Database(db_connection)
 ###### MODERATION ######
 
 moderation.start_up(db)
+#moderation.validate_all_comments()
 
 ###### STATIC PAGES ######
 

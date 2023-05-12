@@ -199,3 +199,15 @@ class Database():
             "content": comment[4],
             "public": comment[5]
         } for comment in self.db_cursor.fetchall()]
+
+    def get_all_comments(self):
+        self.db_cursor.execute("SELECT * FROM comments ORDER BY posted_on")
+
+        return [{
+            "comment_id": comment[0],
+            "post_id": comment[1],
+            "user_name": comment[2],
+            "posted_on": comment[3],
+            "content": comment[4],
+            "public": comment[5]
+        } for comment in self.db_cursor.fetchall()]
