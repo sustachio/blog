@@ -4,6 +4,7 @@ import time
 from re import sub
 from flask import render_template_string
 from json import loads, dumps
+import moderation
 
 def get_visits():
     with open("stats.json", "r") as f:
@@ -56,9 +57,9 @@ class Database():
         self.db.commit()
 
     def update_tables(self):
-        #self.db_cursor.execute("ALTER TABLE comments ADD COLUMN public TINYINT")
-        #self.db_cursor.execute("UPDATE comments SET public=0")
-        #self.db.commit()
+        self.db_cursor.execute("ALTER TABLE comments ADD COLUMN public TINYINT")
+        self.db_cursor.execute("UPDATE comments SET public=0")
+        self.db.commit()
         return
     
     ###### POSTS ######
@@ -161,6 +162,10 @@ class Database():
                               (None, post_id, user_name, posted_on, content))
 
         self.db.commit()
+
+        # validate it
+        self.db_cursor.execute("SELECT last_insert_rowid()")
+        moderation.validate_comment(self.db_cursor.fetchone()[0])
 
     def get_comment(self, comment_id):
         self.db_cursor.execute("SELECT * FROM comments WHERE comment_id=?",(comment_id,))
