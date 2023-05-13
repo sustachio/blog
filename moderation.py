@@ -72,7 +72,9 @@ def start_up(db_):
     db = db_
     
     # start client in background
-    threading.Thread(target=lambda : client.run(os.environ["DISCORD_KEY"])).start()
+    thread = threading.Thread(target=lambda : client.run(os.environ["DISCORD_KEY"]))
+    thread.daemon = True
+    thread.start()
     print("Starting moderation bot...")
 
     # wait
