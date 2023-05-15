@@ -76,7 +76,3 @@ def start_up(db_):
     thread.daemon = True
     thread.start()
     print("Starting moderation bot...")
-
-    # wait
-    while not STARTED:
-        pass
