@@ -31,11 +31,12 @@ def page_wrapper(page):
 
 db_connection = sqlite3.connect("database.db", check_same_thread=False)
 db = Database(db_connection)
-#db.update_tables()
 
 ###### MODERATION ######
 
 moderation.start_up(db)
+#db.update_tables()
+db.get_all_comments()
 #moderation.validate_all_comments()
 
 ###### STATIC PAGES ######

@@ -29,8 +29,11 @@ code {
 }
 
 .comment {
-    margin: 1rem 0;
     white-space: pre-line;
+}
+
+.comment b {
+    margin-top: 0;
 }
 
 .activity {
@@ -49,6 +52,13 @@ code {
 .visit-number {
     display: inline-block;
     width: 2rem;
+}
+
+.comment-replies {
+    display: block;
+    border-left: thick solid rgba(0, 0, 0, .2);
+    padding-left: 1rem;
+    padding-bottom: 1rem;
 }
 
 #email {

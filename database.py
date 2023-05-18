@@ -51,15 +51,19 @@ class Database():
             user_name text,
             posted_on date,
             content text,
-            public tinyint
+            public tinyint,
+            replying_to int DEFAULT 0
         )""")     
 
         self.db.commit()
 
     def update_tables(self):
-        self.db_cursor.execute("ALTER TABLE comments ADD COLUMN public TINYINT")
-        self.db_cursor.execute("UPDATE comments SET public=0")
-        self.db.commit()
+        #self.db_cursor.execute("ALTER TABLE comments ADD COLUMN public TINYINT")
+        #self.db_cursor.execute("UPDATE comments SET public=0")
+        # self.db_cursor.execute("ALTER TABLE comments ADD COLUMN replying_to INT")
+        # self.db_cursor.execute("UPDATE comments SET replying_to=0")
+        #self.add_comment("a-blog-post-about-this-blog", "Seth M", "Test reply comment", replying_to=3)
+        #self.db.commit()
         return
     
     ###### POSTS ######
@@ -153,13 +157,13 @@ class Database():
     ###### COMMENTS ######
 
     
-    def add_comment(self, post_id, user_name, content):
+    def add_comment(self, post_id, user_name, content, replying_to=-1):
         self.db_cursor.execute("SELECT * FROM comments")
 
         posted_on = time.strftime('%Y-%m-%d')
         
-        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?,0)",
-                              (None, post_id, user_name, posted_on, content))
+        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?,0,?)",
+                              (None, post_id, user_name, posted_on, content, replying_to))
 
         self.db.commit()
 
@@ -188,16 +192,17 @@ class Database():
         self.db.commit()
         
 
-    def get_comments(self, post_id):
-        self.db_cursor.execute("SELECT * FROM comments WHERE (post_id=? AND public=1) ORDER BY posted_on", (post_id,))
-
+    def get_comments(self, post_id="", replying_to=-1):
+        self.db_cursor.execute("SELECT * FROM comments WHERE ((post_id=? OR replying_to=?) AND public=1) ORDER BY posted_on", (post_id,replying_to))
+        
         return [{
             "comment_id": comment[0],
             "post_id": comment[1],
             "user_name": comment[2],
             "posted_on": comment[3],
             "content": comment[4],
-            "public": comment[5]
+            "public": comment[5],
+            "replies": self.get_comments(replying_to=comment[0]),
         } for comment in self.db_cursor.fetchall()]
 
     def get_all_comments(self):
@@ -209,5 +214,6 @@ class Database():
             "user_name": comment[2],
             "posted_on": comment[3],
             "content": comment[4],
-            "public": comment[5]
+            "public": comment[5],
+            "repleis": self.get_comments(replying_to=comment[0]),
         } for comment in self.db_cursor.fetchall()]

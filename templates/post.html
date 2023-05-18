@@ -1,3 +1,17 @@
+{% macro comment(data) -%}
+    <div class="comment" id="{{ data.comment_id }}">
+        <b>{{ data.user_name }} on {{ data.posted_on }}</b>
+        {{ data.content }}
+    </div>
+    {% if data.replies|length %}
+        <div class="comment-replies">
+            {% for reply in data.replies %}
+                {{ comment(reply) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{%- endmacro %}
+
 {% extends "index.html" %}
 {% block content %}
 
@@ -13,11 +27,8 @@
 <div id="comments">
     
     {% if comments|length %}
-        {% for comment in comments %}
-            <div class="comment" id="{{ comment.comment_id }}">
-                <b>{{ comment.user_name }} on {{ comment.posted_on }}</b>
-                {{ comment.content }}
-            </div>
+        {% for data in comments %}
+            {{ comment(data) }}
         {% endfor %}
     {% else %}
         <p>No comments here yet. You should write one!</p>
