@@ -157,7 +157,7 @@ class Database():
     ###### COMMENTS ######
 
     
-    def add_comment(self, post_id, user_name, content, replying_to=-1):
+    def add_comment(self, post_id, user_name, content, replying_to=0):
         self.db_cursor.execute("SELECT * FROM comments")
 
         posted_on = time.strftime('%Y-%m-%d')
@@ -192,8 +192,8 @@ class Database():
         self.db.commit()
         
 
-    def get_comments(self, post_id="", replying_to=-1):
-        self.db_cursor.execute("SELECT * FROM comments WHERE ((post_id=? OR replying_to=?) AND public=1) ORDER BY posted_on", (post_id,replying_to))
+    def get_comments(self, post_id, replying_to=0):
+        self.db_cursor.execute("SELECT * FROM comments WHERE ((post_id=? AND replying_to=?) AND public=1) ORDER BY posted_on", (post_id,replying_to))
         
         return [{
             "comment_id": comment[0],
@@ -202,11 +202,11 @@ class Database():
             "posted_on": comment[3],
             "content": comment[4],
             "public": comment[5],
-            "replies": self.get_comments(replying_to=comment[0]),
+            "replies": self.get_comments(post_id, replying_to=comment[0]),
         } for comment in self.db_cursor.fetchall()]
 
     def get_all_comments(self):
-        self.db_cursor.execute("SELECT * FROM comments ORDER BY posted_on")
+        self.db_cursor.execute("SELECT * FROM comments WHERE replying_to=0 ORDER BY posted_on")
 
         return [{
             "comment_id": comment[0],
@@ -215,5 +215,5 @@ class Database():
             "posted_on": comment[3],
             "content": comment[4],
             "public": comment[5],
-            "repleis": self.get_comments(replying_to=comment[0]),
+            "replying_to": comment[6],
         } for comment in self.db_cursor.fetchall()]
