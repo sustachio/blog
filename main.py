@@ -77,6 +77,7 @@ def projects():
             "home.html", 
             all_posts=db.get_posts(), 
             posts=db.get_projects(),
+            visits=get_visits()
         )
     )
 
