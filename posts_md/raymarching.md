@@ -1,6 +1,6 @@
-Raymarching
+Raymarching: Perfect Spheres and Easy 3D
 Post
-12/9/23
+2023-8-14
 This post is a work in progress.
 
 If you've done any 3d modeling before you may have heard that "You can't make a perfect sphere," since every 3d scene is just made of a bunch of triangles. But what if there is another way of doing 3d? Well there is: Ray marching and signed distance functions.

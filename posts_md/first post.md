@@ -1,6 +1,6 @@
 A Blog Post About This Blog
 Project
-4/11/23
+2023-4-11
 Welcome to my blog! 
 
 Here I will (try to) make posts often about some projects that I am working on or just post anything else that I wanted to write about. I will try and post often enough and, later, I may even change up the site a bit.

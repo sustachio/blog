@@ -1,6 +1,6 @@
 Turn Your Text Into Doughnuts
 Project
-5/10/23
+2023-5-10
 Have you ever wanted to turn any text into a doughnut? No? Well I did, and I made a tool to do just that!
 
 Introducing [Doughnut Text Formater](https://github.com/sustachio/doughnut-text-formater), a tool to make your text doughnut shaped. It uses lots of math to make the perfect doughnuts out of any text.

@@ -1,6 +1,6 @@
 Never Write a Line of CSS Again
 Project
-4/24/23
+2023-4-24
 Any time I have to do a project involving making a website, I always end up spending too much time writing CSS, which often leads to me giving up on it or just making bad choices. To solve this, I created [random-css](https://github.com/sustachio/random-css), a tool which writes quality CSS for you.
 
 You can give it any HTML and it will spit out some css making styles for all of your tags, classes, and ids. If you dislike the styles it gives you, all you need to to is run it again and get a complety new page.
