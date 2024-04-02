@@ -158,7 +158,7 @@ class Database():
 
         posted_on = time.strftime('%Y-%m-%d')
         
-        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?,0)",
+        self.db_cursor.execute("INSERT INTO comments VALUES(?,?,?,?,?,1)",
                               (None, post_id, user_name, posted_on, content))
 
         self.db.commit()
