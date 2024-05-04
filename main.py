@@ -91,6 +91,10 @@ def find_me():
         )
     )
 
+@app.route("/spm")
+def strokes_per_minute_counter():
+    return render_template("spm_counter.html")
+
 ###### QUERIED PAGES ######
 
 @app.route("/post/<post_id>")

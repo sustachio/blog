@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="{{ url_for('static', filename='spm_counter.css') }}" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="center_items">
+  <div id="layout">
+    <div id="strokes_per_minute_area" class="center_items">
+      <h1>Strokes per minute: <span id="spm">0</span>
+    </div>
+
+    <button id="stroke_area" class="center_items" onmousedown="stroke()">
+      Stroke
+    </button>
+
+    <button id="reset_area" class="center_items" onmousedown="reset()">
+       Reset
+    </button>
+
+  </table>
+
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='spm_counter.js') }}"></script>
+</body>
+
+</html>
