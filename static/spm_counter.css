@@ -14,7 +14,7 @@ button {
     display: inline-block;
 }
 
-/* center hack (flex is stupid) */
+/* center hack (flex is silly) */
 .center_items {
     display: flex;
     justify-content: center;
@@ -31,7 +31,6 @@ button {
 
 #strokes_per_minute_area, #stroke_area, #reset_area {
     height: 100%;
-    /* margin: 1em; */
 }
 
 #strokes_per_minute_area {

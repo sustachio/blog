@@ -36,7 +36,7 @@ function update_ui() {
     strokes_per_minuete = 60/(stroke_length_average/1000)
     strokes_per_minuete = Math.round(strokes_per_minuete * 10) / 10 // one decimal point
 
-    if (strokes_per_minuete > 500 || strokes_per_minuete < 0) {
+    if (strokes_per_minuete > 100000 || strokes_per_minuete < 0) {
         strokes_per_minuete = 0
     }
 
