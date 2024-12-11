@@ -28,6 +28,13 @@ code {
     max-width: calc(100vw - 8rem);
 }
 
+.holiday span:nth-of-type(even) {
+	color: red;
+}
+.holiday span:nth-of-type(odd) {
+	color: green;
+}
+
 .comment {
     margin: 1rem 0;
     white-space: pre-line;
