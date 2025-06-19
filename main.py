@@ -4,6 +4,7 @@ import moderation
 import css_maker
 import sqlite3
 import doughnut
+import datetime
 
 app = Flask(__name__)
 
@@ -44,11 +45,21 @@ moderation.start_up(db)
 def home():
     increment_visits()
 
+    time = datetime.datetime.now()
+
+    holiday = "holiday-none"
+    if (time.month == 12 and time.day <= 25): holiday = "holiday-christmas"
+    if (time.month == 10 and time.day == 31): holiday = "holiday-halloween"
+    if (time.month == 1  and time.day == 1 ): holiday = "holiday-newyears"
+    if (time.month == 2  and time.day == 14): holiday = "holiday-valentines"
+    if (time.month == 7  and time.day == 4 ): holiday = "holiday-fourth"
+
     return page_wrapper(
         render_template(
             "home.html", 
             posts=db.get_posts(),
-            visits=get_visits()
+            visits=get_visits(),
+            holiday=holiday
         ))
 
 @app.errorhandler(404)

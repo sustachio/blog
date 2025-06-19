@@ -1,13 +1,24 @@
 {% extends "index.html" %}
 {% block content %}
 
-<h1 class="holiday">
+<h1 class="{{ holiday }}">
 	<span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span>
 	<span>t</span><span>o</span>
 	<span>m</span><span>y</span>
 	<span>b</span><span>l</span><span>o</span><span>g</span><span>!</span>
 </h1>
-<h5>Happy Holidays!</h5>
+
+{% if holiday == "holiday-christmas" %}
+	<h5>Happy Holidays!</h5>
+{% elif holiday == "holiday-halloween"%}
+	<h5>Happy Halloween 👻!</h5>
+{% elif holiday == "holiday-newyears"%}
+	<h5>Happy New Years 🎉!</h5>
+{% elif holiday == "holiday-valentines"%}
+	<h5>Happy Valentines Day! <3</h5>
+{% elif holiday == "holiday-fourth"%}
+	<h5>Happy Independence Day!!!!!!! 🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅 </h5>
+{% endif %}
 
 <p>You are visitor number:</p>
 <div id="visit-numbers">

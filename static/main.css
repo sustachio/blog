@@ -28,13 +28,6 @@ code {
     max-width: calc(100vw - 8rem);
 }
 
-.holiday span:nth-of-type(even) {
-	color: red;
-}
-.holiday span:nth-of-type(odd) {
-	color: green;
-}
-
 .comment {
     margin: 1rem 0;
     white-space: pre-line;
@@ -98,6 +91,41 @@ code {
 
 .post-card {
     width: 25rem;
+}
+
+.holiday-christmas span:nth-of-type(even) {
+	color: red;
+}
+.holiday-christmas span:nth-of-type(odd) {
+	color: green;
+}
+
+.holiday-halloween span:nth-of-type(even) {
+	color: darkorange;
+}
+.holiday-halloween span:nth-of-type(odd) {
+	color: green;
+}
+
+.holiday-newyears span:nth-of-type(even) {
+	color: #FF664B;
+}
+.holiday-newyears span:nth-of-type(odd) {
+	color: gold;
+}
+
+.holiday-valentines span:nth-of-type(even) {
+	color: pink;
+}
+.holiday-valentines span:nth-of-type(odd) {
+	color: crimson;
+}
+
+.holiday-fourth span:nth-of-type(even) {
+	color: red;
+}
+.holiday-fourth span:nth-of-type(odd) {
+	color: blue;
 }
 
 @media screen and (max-width: 36rem) {
