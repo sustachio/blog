@@ -1,8 +1,6 @@
 Raymarching: Perfect Spheres and Easy 3D
 Post
 2023-8-14
-This post is a work in progress.
-
 If you've done any 3d modeling before you may have heard that "You can't make a perfect sphere," since every 3d scene is just made of a bunch of triangles. But what if there is another way of doing 3d? Well there is: Ray marching and signed distance functions.
 
 Ray marching renders 3d scenes by shooting rays (a line through space) towards the scene for each pixel and gathering data about where they hit. Instead of just checking for intersections with each object like in ray tracing, ray marching casts these rays by "marching" along them towards an object (the scene) defined by a function that returns the distance to it. The powerful part of a ray marcher is what you can do in and with this function:
@@ -262,22 +260,24 @@ All we have to do is look at the angle that the light ray is hitting the surface
 
 Instead of finding an actual angle, we can simply use the dot product of the light ray and the normal of the surface. This is fairly easy to implement, and a calculation of surface normals can be very helpful later on.
 
+This dot product trick works as the dot product of two vectors is equal to the product of both of the magnitudes of both vectors (which are both just one as they are normalized) and the cosine of the angle in between them (1 when parallel or head on and 0 when perpendicular). It is also simply equal to A_x\*B_x + A_y\*B_y + A_z\*B_z where A and B are the two vectors making it a very simple and fast operation.
+
 ![text]({{ url_for('static', filename='raymarching/raymarchingfakelighting2.png') }} "text")
 
-In this MS paint visual, I wrote out the dot products of the light rays and surface normals. Any of the dot products on the unlit side will be negative and should be rounded up to 0 because you can't have a negative amount of light (this matters if you have multiple light sources).
+In this MS paint visual, I wrote out the dot products of the light rays and surface normals. Any of the dot products on the unlit side will be negative and should be clamped to 0 because you can't have a negative amount of light (this matters if you have multiple light sources).
 ### Normals
 
 Normals are the perpendicular vectors coming off of a surface. With scenes defined by SDFs, you can get a normal for any point in space.
 
 ![text]({{ url_for('static', filename='raymarching/raymarchingwhatarenormals.png') }} "text")
 
-To find the normal of a point, you find the difference between a vector made up of the distances to the scene from an offset point in each direction (dx, dy, dz) and the original sample point (x, y, z). This is a bit confusing, but all it does is build a new vector representing the amount of change in each direction.
+To find the normal of a point, you find the difference between a vector made up of the distances to the scene from an offset point in each direction (dx, dy, dz) and the original sample point (x, y, z). This is a bit confusing, but all it does is build a new vector representing the amount of change in each direction, I believe that is is similar to a gradient in math.
 
 This can be implemented in 3d using:
 
 	vec3 getNormal(vec3 p)
 	{
-		vec2 e = vec2(.01,0); // used to build translation vectors like vec3(.01,0,0)
+		vec2 e = vec2(.01,0); // used to build translation vectors like e.xyy=vec3(.01,0,0)
 		 
 		vec3 n1 = vec3(
 			getClosestObject(p+e.xyy).d, // x offset
@@ -309,7 +309,7 @@ We can get a little more precision by also sampling points in the opposite direc
 		return normalize(n1-n2);
 	}
 
-Sorry if this is a bit confusing, you don't really need to know how it works (I didn't untill I wrote this), but just know that it works fairly well (but not perfect).
+Sorry if this is a bit confusing, you don't really need to know how it works (I didn't until I wrote this), but just know that it works fairly well (but not perfect, smaller values of e will provide higher accuracy).
 ### Lighting Implementation
 
 Before we go on, lets increase how far we can see to better demonstrate the light hitting the ground:
@@ -467,8 +467,15 @@ It's really simple: When we put each value of the point into a modular system of
 
 ![text]({{ url_for('static', filename='raymarching/moduloshader.png') }} "text")
 
-Note: Although this works great if every repeated cell is the same, it breaks a bit if the cells are different. Inigo Quilez has a great article on this and how to fix it at: https://iquilezles.org/articles/sdfrepetition/
+Note: Although this works great if every repeated cell is the same, it breaks a bit if the cells are different. Inigo Quilez has a great article on this and how to fix it at: <https://iquilezles.org/articles/sdfrepetition/>
 
 This is barely scratching the surface of what you can do, so I encourage you to try some of this out, research a bit, and just have fun with it.
 
-Thanks for reading, and I'll be sure to release the next parts soon!
+Some other cool things to research or play with are:
+ - Shadows (simplest way is just casting a ray from surface point to light source and seeing if it hits anything)
+ - Soft shadows
+ - Smooth unions and other cool sdf funcitons (good resource: <https://iquilezles.org/articles/raymarchingdf/>)
+ - Volumetrics (fog/clouds or even grass)
+ - Ambient occlusion
+ - Noise
+ - Procedural textures
