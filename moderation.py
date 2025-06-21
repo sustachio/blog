@@ -29,7 +29,7 @@ async def on_message(message):
     if client.user == message.author:
         return
 
-    if message.content == "ping":
+    if message.content.lower() == "ping":
         await message.channel.send("pong")
 
     msg = message.content.split(" ")
