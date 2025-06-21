@@ -1,3 +1,7 @@
+{% if not (alert == "" or alert == "None" or alert is undefined) %}
+<h1 style="color:red;">ALERT: {{alert}}</h1>
+{% endif %}
+
 {% extends "index.html" %}
 {% block content %}
 
@@ -26,7 +30,7 @@
 </div>
     
 <h3>Post a comment:</h3>
-<p>Please don't spam the comments, I get a notification every time. Also please be mature (Nolan)</p>
+<p>Please don't spam the comments, I get a notification every time. Also please be mature (Nolan)<br>Message limit: 1500 characters, name limit: 100 characters</p>
 <form id="post-comment" method="post" action="{{ url_for('post_comment', post_id=post.id) }}" target="_self">
     <table>
         <tr>

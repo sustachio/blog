@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     padding: 0;
     margin: 0;
+	overflow: auto;
 }
 
 img {
@@ -53,6 +54,12 @@ code {
 
 #email {
     overflow-wrap: anywhere;
+}
+
+#content {
+	word-wrap: break-word; /* Break long words */
+	word-break: break-word; /* Ensure long words break */
+	overflow-wrap: break-word;
 }
 
 #post-comment {

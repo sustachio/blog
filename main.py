@@ -115,6 +115,8 @@ def post(post_id):
     if post == "error":
         return redirect(url_for("page_not_found"))
 
+    alert = request.args.get("alert", "")
+
     return page_wrapper(
         render_template(
             "post.html", 
@@ -122,6 +124,7 @@ def post(post_id):
             posts=db.get_posts(),
             all_posts=db.get_posts(),
             comments=db.get_comments(post_id),
+            alert=alert
         )
     )
 
@@ -129,7 +132,12 @@ def post(post_id):
 
 @app.route("/post_comment/<post_id>", methods=["POST"])
 def post_comment(post_id):
-    print("fetched")
+    if len(request.form.get("comment")) > 1500: 
+        return redirect(url_for("post", post_id=post_id, alert="Comment too long (>1500 chars)"))
+
+    if len(request.form.get("name")) > 100: 
+        return redirect(url_for("post", post_id=post_id, alert="Name too long (>100 chars)"))
+
     db.add_comment(post_id, request.form.get("name"), request.form.get("comment"))
 
     return redirect(url_for("post", post_id=post_id))

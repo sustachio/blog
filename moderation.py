@@ -52,21 +52,28 @@ async def on_message(message):
     # send all emssages in blocks of 20 messages
     if command == "list":
         block = ""
-        i = 0
 
         for c in db.get_all_comments():
             public = "✅" if c["public"] else "❌"
 
-            block += f"""\n`{c["comment_id"]}` {public}: [{c["user_name"]}] {c["content"]}"""
+            comment = f"""\n`{c["comment_id"]}` {public}: [{c["user_name"]}] {c["content"]}"""
 
-            i += 1
-            if i % 20 == 0:
+            # discord limits messages to 2000 charecters
+            if len(comment + block) > 2000:
                 await message.channel.send(block)
-                await asyncio.sleep(1)
+                await asyncio.sleep(1/40) # rate limit 50/sec
                 block = ""
 
-        if i % 20 != 0:
-            await message.channel.send(block)
+            # idek how this would happen but just in case
+            if len(comment) > 2000:
+                while len(comment) > 2000:
+                    await message.channel.send(comment[:2000])
+                    await asyncio.sleep(1/40) # rate limit 50/sec
+                    comment = comment[2000:]
+
+            block += comment
+
+        await message.channel.send(block)
 
 @client.event
 async def on_reaction_add(reaction, user):
