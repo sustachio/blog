@@ -22,7 +22,50 @@ async def on_ready():
     print(f"{client.user} is up!")
     
     user = await client.fetch_user(MY_ID)
-    await user.send("I'm running!")
+    await user.send("I'm running! (list, delete, undelete)")
+
+@client.event
+async def on_message(message):
+    if client.user == message.author:
+        return
+
+    if message.content == "ping":
+        await message.channel.send("pong")
+
+    msg = message.content.split(" ")
+    command = msg[0].lower();
+
+    if command == "delete":
+        id = int(msg[1])
+        db.db_cursor.execute("UPDATE comments SET public=0 WHERE comment_id=?", (id, ))
+        db.db.commit()
+
+        await message.channel.send(f"Set {id} visability off")
+        
+    if command == "undelete":
+        id = int(msg[1])
+        db.db_cursor.execute("UPDATE comments SET public=1 WHERE comment_id=?", (id, ))
+        db.db.commit()
+
+        await message.channel.send(f"Set {id} visability on")
+
+    # send all emssages in blocks of 20 messages
+    if command == "list":
+        block = ""
+        i = 0
+
+        for c in db.get_all_comments():
+            public = "✅" if c["public"] else "❌"
+
+            block += f"""\n`{c["comment_id"]}` {public}: [{c["user_name"]}] {c["content"]}"""
+
+            i += 1
+            if i % 20 == 0:
+                await message.channel.send(block)
+                block = ""
+
+        if i % 20 != 0:
+            await message.channel.send(block)
 
 @client.event
 async def on_reaction_add(reaction, user):
