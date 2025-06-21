@@ -62,6 +62,7 @@ async def on_message(message):
             i += 1
             if i % 20 == 0:
                 await message.channel.send(block)
+                await asyncio.sleep(1)
                 block = ""
 
         if i % 20 != 0:
