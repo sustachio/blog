@@ -10,7 +10,7 @@ img {
     object-fit: contain;
 }
 
-table, th, td {
+table, th, td, .picture-grid, .picture-grid > div {
     border: 1px solid;
     text-align: left;
     vertical-align: top;
@@ -133,6 +133,23 @@ code {
 }
 .holiday-fourth span:nth-of-type(odd) {
 	color: blue;
+}
+
+.picture-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 2px;
+	padding: 2px;
+}
+
+.picture-grid > div {
+	padding: 1px
+}
+
+@media screen and (max-width: 36rem) {
+	.picture-grid {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 
 @media screen and (max-width: 36rem) {
