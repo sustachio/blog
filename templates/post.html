@@ -38,7 +38,7 @@
             <th><label for="name">Name:</label></th>
             <td><input type="text" name="name"
                 placeholder="Enter your name"
-                value="Anonymous" required></td>
+                value="Anonymous {{ '%x' % (range(0, 4096) | random) }}" required></td>
         </tr>
 
         <tr>
