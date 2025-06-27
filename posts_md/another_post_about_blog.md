@@ -14,6 +14,8 @@ Despite not posting here too much, I have had a lot of fun adding little things 
 
 One of my favorite things I've added is comments. I was actually also working on adding an ability to reply to others' comments but it has been stalled for a few months now. Every time a comment is posted I get a notification from a Discord bot that is running on the same Raspberry Pi hosting this blog. It gives me the option to remove the comment if it is from a bot (there are more of these than you'd think). I also have some very basic moderation commands built into the bot being list (lists all comments), delete \[id] (hides comment), and undelete \[id] (unhides comment). Each comment's id can be accessed from the HTML id on the element so they are easy to find.
 
+The default name for a comment is Anonymous + a random hexadecimal number from 0-4096 in order to sort out between multiple anonymous people (assuming someone would retype the random number).
+
 All of the comments are stored in an sqlite database.
 
 Below are some images demonstrating the new comments and discord bot (these are from the development bot which is identical but for the development server):
@@ -26,7 +28,7 @@ Below are some images demonstrating the new comments and discord bot (these are 
 
     <div>
         <img src="{{ url_for('static', filename='another_post_about_blog/comments.png') }}" />
-        <i>Comment section</i>
+        <i>Comment section V1</i>
     </div>
 
     <div>
