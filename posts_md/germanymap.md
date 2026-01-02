@@ -3,7 +3,7 @@ Project
 2026-1-1
 Each year, people in my German class will compete in a competition called [Sprachfest](https://www.sprachfest.org/), which is organized into many events such as declamation events (poetry/prose reading), written tests, and my personal favorite event: crafts. Last year I built a small shield with a custom coat of arms on it, which I'll do a short post about soon, but this year I wanted to do something that incorporated some of the electronics stuff I had been learning. I decided to do a map with LEDs scattered across it showing where different countries/empires/republics were in the modern-day German region from the year 1800 to today. I've linked a video of the finalized product below; there is a timeline on the bottom and a color key to the right (all country names are in German).
 
-The idea to do an animated PCB map was largely inspired by [these PCB] subway maps(https://hackaday.com/2021/09/19/pcb-metro-maps-are-a-gorgeous-labor-of-love/) you can find online.
+The idea to do an animated PCB map was largely inspired by [these PCB subway maps](https://hackaday.com/2021/09/19/pcb-metro-maps-are-a-gorgeous-labor-of-love/) you can find online.
 
 **Full animation**
 
