@@ -42,6 +42,8 @@ Some small notes from the design:
 
 **Schematics**
 
+*Note: PDF viewers may not work on mobile*
+
 <iframe src="{{ url_for('static', filename='germany_map/schematics.pdf') }}" width="100%" height="500px"></iframe>
 
 (Use the +/- buttons to zoom untill words are visable)
