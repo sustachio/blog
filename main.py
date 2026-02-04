@@ -106,6 +106,12 @@ def find_me():
 def strokes_per_minute_counter():
     return render_template("spm_counter.html")
 
+###### REDIRECTS #######
+
+@app.route("/germany")
+def germany():
+    return redirect(url_for("post", post_id="animated-led-map-of-territorial-expansion-in-the-modern-day-german-region-road-trip-"))
+
 ###### QUERIED PAGES ######
 
 @app.route("/post/<post_id>")
