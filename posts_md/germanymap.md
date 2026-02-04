@@ -189,6 +189,8 @@ The only major problem I realized too late was that the First French Republic sh
 
 The project will not end up getting sent to Sprachfest for official competition as I decided I probably need to work on my actual German speaking skills over the next few months, as I am now in AP German and am feeling a bit behind. On a brighter note, one of my other good friends was also doing the craft category and we could only send one either way, so we'll still be sending something.
 
+**UPDATE:** It will be sent to competition ^\_^! I'm still not going in person or competing in other events, but my friend will be bringing it in and competing in other events (good luck if you're reading this!). Unfortunately we can't also send their craft (one per team), it was pretty cool =(.
+
 **Honorable road trip mention**
 
 On the road trip I was designing this throughout, we stopped by White Sands National Park, and I was able to get a Parks on the Air activation with my G90 and a 20m quarter-wave vertical with 2 elevated radials on a 10m Spiderbeam mast. Almost all of the signal reports I got back were 59; it was such a neat place to activate!
@@ -215,4 +217,4 @@ On the road trip I was designing this throughout, we stopped by White Sands Nati
     </tr>
 </table>
 
-Thanks a lot for reading, have a good day! ^_^
+Thanks a lot for reading, have a good day! :3
