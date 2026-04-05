@@ -81,6 +81,15 @@ def portfolio():
         )
     )
 
+@app.route("/about")
+def about():
+    return page_wrapper(
+        render_template(
+            "about.html",
+            posts=db.get_posts()
+        )
+    )
+
 @app.route("/projects")
 def projects():
     return page_wrapper(
