@@ -1,7 +1,7 @@
 Newspaper Article: Competing in Science Olympiad
 Post
 2026-2-28
-*This is a non-technical article about Science Olympiad which I did for my local neighborhood newspaper.*
+*This is a non-technical article about Science Olympiad which I wrote for my local neighborhood newspaper.*
 
 I joined my school’s Science Olympiad team at the start of this school year with some friends of mine and have been having a good time with it. Science Olympiad is an academic competition where schools send teams of 15 people to competitions to compete in 23 different events, such as Entomology, Chemistry, and Astronomy. You can have a partner for each event while competing, and each member of a team usually focuses on studying for 2-4 events throughout the year.
 
