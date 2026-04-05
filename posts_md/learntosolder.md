@@ -13,6 +13,9 @@ Once I had all of the boards and components, I sent out an advertisement in Blen
 
 Overall, the event seemed to have been a success. We had a good turnout, and a lot of people who had never soldered before got some good experience. I also got to design a circuit board, which is always fun to do. If you are interested in learning to solder yourself, there are tons of cheap kits online, and you can pick up a soldering iron from most hardware stores or online for around $20. You can buy kits for homemade radios, synthesizers (electronic music equipment), guitar pedals, headphone amplifiers, and all sorts of other things. If you don’t know what you’d like to do, you can just look up “solder project” on AliExpress or a similar Chinese shopping site and find something cheap. Once you get the basics down, you can learn to read electronics schematics and can make just about any circuit you can find online on prototyping boards, which is a great way to get into electronics as a whole.
 
+<img src="{{ url_for('static', filename='learntosolder/poster.png') }}"></img>
+<i>The poster sent out to Blend (sponsor name removed for privacy)</i>
+
 <table>
     <tr>
         <td>
@@ -49,12 +52,14 @@ I would definitely like to host another workshop similar to this in the future, 
 
 - **Pre-prepare components for people** - I wasn't sure if many people were going to come so I ended up just laying out all of the components on a table in piles and having a number of components each person should take. Since we had much more people than I expected, this ended up taking quite a while to get everyone through and some people ended up taking too many leaving the people at the back of the line with only enough components to partially complete a board. I have a ton of small baggies from various components I have ordered, so next time I will probably pre-package the components for each kit.
 
-- **Board size/component count** - The number of pins (~39) was good and most people were able to finish in a single lunch block, keeping the total pin count under or around 50 seems like it is accomplishable in a lunch block.
+- **Board size/component count** - The number of pins (~39) was good and most people were able to finish in a single lunch block. Keeping the total pin count under or around 50 seems like it is accomplishable in a lunch block.
 
 - **Complexity** - While the simple board was very easy to design and did have a cool practical effect, there was not much to analyze after the fact. For future workshops, I would like to try and tie them into deeper topics, such as a potential impedance matching presentation with a workshop tied into it.
 
 - **Organizing beforehand** - While the event itself went rather smoothly, the only real problem was that not everyone that showed up was able to build a board as we did not plan for the amount of people that showed up. In the future, we will likely send out some sort of interest form beforehand to gauge interest and properly purchase materials.
 
-Also I didn't mention this in the article, but after everyone got all of the components and irons and we started to walk around to help people out, we realised we had forgot to give anyone solder TwT. We quickly found a roll and broke strands off for folks.
+Also I didn't mention this in the article, but after everyone got all of the components and irons and we started to walk around to help people out, we realised we had forgotten to give anyone solder TwT. We quickly found a roll and broke strands off for folks.
 
-Thank you for reading! ^_^
+Overall I'd say the event went well and I am happy I ended up going through with it.
+
+Thank you for reading! Have a good day! ^_^
