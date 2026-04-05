@@ -191,6 +191,8 @@ The project will not end up getting sent to Sprachfest for official competition 
 
 **UPDATE:** It will be sent to competition ^\_^! I'm still not going in person or competing in other events, but my friend will be bringing it in and competing in other events (good luck if you're reading this!). Unfortunately we can't also send their craft (one per team), it was pretty cool =(.
 
+**UPDATE #2:** It won 1st out of 6 competitors at regionals on 2/7/2026! We will be sending it to state which is the final level of Sprachfest competitions.
+
 **Honorable road trip mention**
 
 On the road trip I was designing this throughout, we stopped by White Sands National Park, and I was able to get a Parks on the Air activation with my G90 and a 20m quarter-wave vertical with 2 elevated radials on a 10m Spiderbeam mast. Almost all of the signal reports I got back were 59; it was such a neat place to activate!
