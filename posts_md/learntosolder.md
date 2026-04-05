@@ -1,4 +1,4 @@
-Hosting a Learn to Solder Day at LASA Electronics Club
+Newspaper Article: Hosting a Learn to Solder Day at LASA Electronics Club
 Project
 2026-2-28
 *The following was a newspaper article I wrote for a local neighborhood newspaper about a learn to solder day which I hosted at my school using custom PCBs. Technical details are provided after the article.*
@@ -30,6 +30,8 @@ Overall, the event seemed to have been a success. We had a good turnout, and a l
 </table>
 
 ## Technical details
+
+*Not a part of the newspaper article.*
 
 The circuit itself is a very simple TLC555 astable oscillator circuit with its output hooked up to a small buzzer. In order for the keyboard to work, three buttons were placed in series with potentiometers which were in turn connected to a capacitor, allowing you to change how much current and therefore how quickly the capacitor could charge and discharge. The whole circuit was designed to be powered off of a 9V battery, but it would have operated off of anywhere from 2-15V. The hole sizes spacing for the buzzer was slightly off, but you could bend the pins easily enough.
 
