@@ -20,7 +20,7 @@
 	<h5>Happy Independence Day!!!!!!! 🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅 </h5>
 {% endif %}
 
-<p>You are visitor number:</p>
+<p>You are visit number:</p>
 <div id="visit-numbers">
     {% for letter in visits|string %}
         <img src="{{ url_for('static', filename='numbers/'+letter+'.png') }}" alt='{{ letter }}' class="visit-number">
@@ -28,8 +28,6 @@
 </div>
 
 <p>Here you can find some of my projects, and other things that I wanted to write about. Enjoy!</p>
-
-
 
 {% for post in posts|reverse %}
     <table class="post-card">

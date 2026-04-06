@@ -1,6 +1,8 @@
 Raymarching: Perfect Spheres and Easy 3D
 Post
 2023-8-14
+*Note: This article made heavy use of ShaderToy embeds, but it seems like they are no longer working. I have provided direct links for all of the demo shaders below the embeds.*
+
 If you've done any 3d modeling before you may have heard that "You can't make a perfect sphere," since every 3d scene is just made of a bunch of triangles. But what if there is another way of doing 3d? Well there is: Ray marching and signed distance functions.
 
 Ray marching renders 3d scenes by shooting rays (a line through space) towards the scene for each pixel and gathering data about where they hit. Instead of just checking for intersections with each object like in ray tracing, ray marching casts these rays by "marching" along them towards an object (the scene) defined by a function that returns the distance to it. The powerful part of a ray marcher is what you can do in and with this function:
@@ -11,7 +13,10 @@ And just to make this even better, it is incredibly easy to make a renderer for 
 
 Throughout the first parts of this post, we will be working up to making some basic animations like this one:
 
-  <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/ctXfzB?gui=true&t=10&paused=false&muted=true" allowfullscreen></iframe>
+<a href="https://www.shadertoy.com/view/ctXfzB">Embed direct link</a>
+<iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/ctXfzB?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
+
+
 In later parts (yet to be written), we will go over fractals and topics like ambient occlusion and soft shadows.
 
 Note: I will never type out the full code for the ray marcher, but you can get to it at any point in this tutorial by hovering over a example window and clicking on the name. 
@@ -27,6 +32,7 @@ I chose to use GLSL for this because it is what I learned, and it is easy to pic
 
 To start we will make this super simple animation of a sphere moving over a plane, which just casts a ray for each pixel and determines a shade of gray based on how far it goes:
 
+<a href="https://www.shadertoy.com/view/ctjcWm">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/ctjcWm?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 To do this, we will need a rayMarch function which returns the distance a ray traveled before hitting the scene, and a function that returns the distance to the scene (we'll call this one getDistanceToScene)
@@ -88,6 +94,7 @@ All we need to do now is make our function that returns the distance to the scen
 
 Signed distance functions do just what the name says they do: They are functions that return the distance to something from a point, being positive if it's outside, 0 if it's on the surface, and negative if it's inside. This is explained by this visual made by Inigo Quilez, the co-creator of shadertoy.com:
 
+<a href="https://www.shadertoy.com/view/3ltSW2">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/3ltSW2?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 This represents the signed distance function for a 2D circle with blue showing negative values, and orange showing positive values.
 
@@ -109,6 +116,7 @@ We can now build the start of our getDistanceToScene function:
 		return ground;
 	}
 
+<a href="https://www.shadertoy.com/view/dlXBWj">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/dlXBWj?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 To make an SDF for a sphere, all we need is to get the distance from the center of the sphere to the sample point, and subtract the radius. This makes all distances inside of the sphere negative, and keeps the distances greater than the radius positive.
 
@@ -125,6 +133,7 @@ To make an SDF for a sphere, all we need is to get the distance from the center 
 		return sphere;
 	}
 
+<a href="https://www.shadertoy.com/view/dlXfWj">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/dlXfWj?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 That's cool, but how do we combine the sphere and the plane?
 ### Union SDF
@@ -177,10 +186,12 @@ We can also add a little animation to our sphere by making it revolve in a circl
 
 And that's it! Now you have everything you need to make a ray marcher. In the rest of this post, we will just be adding to this, with lighting, colors, and repetition, and other cool effects, but all of those are just additions, and now you already have your own working ray marcher.
 
+<a href="https://www.shadertoy.com/view/ctjcWm">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/ctjcWm?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 Here's a great list of many 3d SDFs for common shapes and operators that can be used with them: https://iquilezles.org/articles/distfunctions/
 # Adding Color
 
+<a href="https://www.shadertoy.com/view/cllfDs">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/cllfDs?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 
 Now that we have a basic ray marcher, we will add color to each object in our scene. This is a lot easier to do than it sounds because of how the rest of the ray marcher was set up. While it is easy to change the color of everything in our scene, the only challenge is how we differentiate between objects, as the ray marching function sees the scene as is a single object.  
@@ -246,6 +257,7 @@ We can also multiply our color by one minus the distance we had earlier for a fo
 		fragColor = vec4(col*vec3(1.-d/MAX_MARCH_DIST),1.0); // fog
 	}
 
+<a href="https://www.shadertoy.com/view/cllfDs">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/cllfDs?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 
 Although you can tell what's happening in the render, it looks a bit flat. In the next part, we will be adding some basic lighting.
@@ -253,6 +265,7 @@ Although you can tell what's happening in the render, it looks a bit flat. In th
 
 Lighting is one of the most important and complicated part of any 3D renderer. For now, we will just implement some basic lighting without any shadows.
 
+<a href="https://www.shadertoy.com/view/DtBfzW">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/DtBfzW?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 To calculate how bright a surface should be relative to an incoming light ray, we can use a little trick to quickly and easily get this value. 
 
@@ -341,6 +354,7 @@ In our main function we have to replace our old method of just getting the color
 		fragColor = vec4(col*vec3(1.-d/MAX_MARCH_DIST),1.0); // we can keep the distance fog
 	}
 
+<a href="https://www.shadertoy.com/view/DtBfzW">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/DtBfzW?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 
 If we want to use a point light instead of the global lighting, all we need to change is how we calculate our light ray:
@@ -348,17 +362,20 @@ If we want to use a point light instead of the global lighting, all we need to c
 		vec3 lightPos = vec3(0, 3, 5. + sin(iTime) * 5.); // a bit of motion on the z axis
 		vec3 lightRay = normalize(lightPos-p);
 
+<a href="https://www.shadertoy.com/view/dt2Bzz">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/dt2Bzz?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 One of the nice things about building something from scratch is that you have complete control over everything. For example if I wanted to give the scene some cartoony lighting all I'd need to do is use a ceiling function (round up) with a multiplied version of the lighting value and shrink it back down:
 
 			lighting = ceil(lighting*5.)/5.;
 
+<a href="https://www.shadertoy.com/view/DtSfzW">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/DtSfzW?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 Now that our scene looks partly presentable, we can start talking about the cool parts of what we can do with SDFs. 😎
 # Transformations & Intro to Cool Functions
 
+<a href="https://www.shadertoy.com/view/mt2fzW">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/mt2fzW?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 Left - translation, center - scale, right - rotation
@@ -415,6 +432,7 @@ And we can define translations for our objects in the getClosestObject function:
 		return scene;
 	}
 
+<a href="https://www.shadertoy.com/view/Dt2BR3">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/Dt2BR3?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 Although this does the exact same thing as having our positions separate in the function arguments, it's better because now we don't have to put those in every SDF which will also allows us to make new transformations that work on any object. 
@@ -457,6 +475,7 @@ So now we know what happens when we use basic functions like subtraction/multipl
 		return sphere;
 	}
 
+<a href="https://www.shadertoy.com/view/mlSBzV">Embed direct link</a>
 <iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/mlSBzV?gui=true&t=10&paused=false&muted=false" allowfullscreen></iframe>
 
 Note: If you are making this yourself, you might need to move the camera out of a sphere.
