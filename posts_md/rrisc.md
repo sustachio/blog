@@ -1,4 +1,4 @@
-RISC Processor, Custom ISA, and compiler
+RISC Processor in Logisim, Custom ISA, and compiler
 Project
 2026-4-4
 Over spring break, I put together a simple 32 bit RISC (reduced instruction set computer) processor using Logisim in order to follow along with the architecture described in the book *Computer Architecture: A Quantitative Approach*. Since the goal was primarily to study higher level computer architecture, not every component was built from logic gates and I made heavy use of the built in multiplexers. To have something to run on the processor, I also wrote a compiler for a custom object oriented programming language which compiles down to an intermediate language based on the stack based VM from the *Nand2Tetris* series. I implemented a second compiler which will go from this intermediate language down to my own assembly language.
