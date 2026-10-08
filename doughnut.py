@@ -79,7 +79,8 @@ class MyHTMLParser(HTMLParser):
             elif item[0] == "data":
                 result += generate_doughnut(item[1].strip())
             elif item[0] == "ref":
-                result += item[1]
+                if not item[1] is None:
+                    result += item[1]
         return result
     
     def handle_starttag(self, tag, attrs):
