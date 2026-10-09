@@ -20,7 +20,7 @@
 	<h5>Happy Independence Day!!!!!!! 🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅🦅 </h5>
 {% endif %}
 
-<p>You are visit number:</p>
+<p>You are visit number: (ticks on page load)</p>
 <div id="visit-numbers">
     {% for letter in visits|string %}
         <img src="{{ url_for('static', filename='numbers/'+letter+'.png') }}" alt='{{ letter }}' class="visit-number">
@@ -28,6 +28,8 @@
 </div>
 
 <p>Here you can find some of my projects, and other things that I wanted to write about. Enjoy!</p>
+
+<p>Don't like the style of the site? Try adding "<a href="{{ url_for('home') }}?random_css">?random_css</a>" or "<a href="{{ url_for('home') }}?doughnut">?doughnut</a>" to the end of any URL on the site to change things up.</p>
 
 {% for post in posts|reverse %}
     <table class="post-card">
