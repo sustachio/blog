@@ -157,6 +157,10 @@ def post_comment(post_id):
 
     return redirect(url_for("post", post_id=post_id))
 
+@app.route("/.well-known/discord")
+def discord_validate():
+    return "dh=553c011870a288ff4f40d638af67a5be2bfe994d"
+
 ###################
 
 db.make_posts_from_md(app)
